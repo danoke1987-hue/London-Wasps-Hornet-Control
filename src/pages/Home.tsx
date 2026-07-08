@@ -8,6 +8,7 @@ import { useSearchParams, useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import PestIdentifier from '../components/PestIdentifier';
 import CoverageChecker from '../components/CoverageChecker';
+import CountyDirectory from '../components/CountyDirectory';
 import CostCalculator from '../components/Calculator';
 import BookingForm from '../components/BookingForm';
 import Reviews from '../components/Reviews';
@@ -217,6 +218,9 @@ export default function Home({
 
       {/* Interactive Live Postcode Coverage Monitor */}
       <CoverageChecker initialPostcode={prefilledPostcode} onNavigate={handleNavigateLocal} />
+
+      {/* Interactive Local Postcode Area Coverage Directories */}
+      <CountyDirectory />
 
       {/* Interactive Cost Estimator Calculator */}
       <CostCalculator onEstimateChange={handleEstimateChange} onNavigate={handleNavigateLocal} />

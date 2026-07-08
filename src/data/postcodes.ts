@@ -4,6 +4,7 @@
  */
 
 import { PostcodeResult } from '../types';
+import { countiesData } from './counties';
 
 // Map of prefixes to response metrics
 export const coverageData: Record<string, { region: string; hub: string; responseTime: number; techs: number }> = {
@@ -86,6 +87,32 @@ export function checkPostcodeCoverage(input: string): PostcodeResult {
       if (coverageData[alphaPrefix]) {
         prefix = alphaPrefix;
         matchFound = true;
+      }
+    }
+  }
+
+  // If still no match in default coverageData, search inside countiesData
+  if (!matchFound) {
+    for (const len of [4, 3, 2, 1]) {
+      if (cleanInput.length >= len) {
+        const candidate = cleanInput.substring(0, len);
+        const matchingCounty = countiesData.find(c => 
+          c.postcodes.some(pc => pc.toUpperCase() === candidate)
+        );
+        if (matchingCounty) {
+          const codeVal = candidate.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+          const responseTime = matchingCounty.responseTimeMin + (codeVal % 10);
+          const techs = Math.max(2, matchingCounty.activeTechs - (codeVal % 3));
+          
+          return {
+            postcode: input.toUpperCase(),
+            isCovered: true,
+            regionName: `${candidate} (${matchingCounty.name})`,
+            averageResponseTimeMin: responseTime,
+            nearestStation: matchingCounty.dispatchHub,
+            activeTechnicians: techs,
+          };
+        }
       }
     }
   }

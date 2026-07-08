@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import ZonePage from './pages/ZonePage';
 import ServicePage from './pages/ServicePage';
 import PestPage from './pages/PestPage';
+import PostcodeAreaPage from './pages/PostcodeAreaPage';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -66,6 +67,7 @@ export default function App() {
             <Route path="/zone/:id" element={<ZonePage />} />
             <Route path="/service/:id" element={<ServicePage />} />
             <Route path="/pest/:id" element={<PestPage />} />
+            <Route path="/area/:areaName/:postcode" element={<PostcodeAreaPage />} />
           </Routes>
         </main>
 
