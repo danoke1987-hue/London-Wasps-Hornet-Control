@@ -113,11 +113,11 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
               <Bug className="w-6 h-6 text-slate-950" />
             </div>
             <div>
-              <span className="block text-lg font-black tracking-tight uppercase leading-none text-amber-500 group-hover:text-amber-400">
-                London Wasp
+              <span className="block text-lg font-black tracking-tight uppercase leading-none text-amber-500 group-hover:text-amber-400 animate-pulse">
+                Wasps & Hornets
               </span>
-              <span className="block text-xs font-medium tracking-widest text-slate-400 uppercase leading-none mt-1">
-                & Hornet Control
+              <span className="block text-xs font-semibold tracking-widest text-slate-400 uppercase leading-none mt-1">
+                Removal
               </span>
             </div>
           </Link>

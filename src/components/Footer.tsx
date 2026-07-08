@@ -48,7 +48,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <Bug className="text-slate-950 w-5 h-5" />
               </div>
               <span className="text-base font-black uppercase tracking-tight text-white leading-none">
-                London Wasp Control
+                Wasps & Hornets Removal
               </span>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed font-semibold">
@@ -154,7 +154,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div className="md:col-span-4 text-center md:text-right text-[11px] text-slate-500 font-bold uppercase tracking-wider">
-            © 2026 London Wasp Control. All Rights Reserved.
+            © 2026 Wasps & Hornets Removal. All Rights Reserved.
           </div>
 
         </div>
