@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Bug, Phone, Mail, Clock, HelpCircle } from 'lucide-react';
+import { Bug, Phone, Mail, Clock, HelpCircle, Globe } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
@@ -54,13 +54,29 @@ export default function Footer({ onNavigate }: FooterProps) {
             <p className="text-xs text-slate-400 leading-relaxed font-semibold">
               Professional, certified wasp and hornet nest eradication services. Operating 24/7/365 across London, Surrey, Kent, Essex, Hertfordshire, and Berkshire.
             </p>
-            <div className="pt-2">
+            <div className="pt-2 flex flex-col gap-2">
               <a
                 href="tel:02079460852"
                 className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-bold transition-all text-red-500 hover:text-red-400"
               >
                 <Phone className="w-3.5 h-3.5" />
                 Emergency Hotline: 020 7946 0852
+              </a>
+              <a
+                href="mailto:info@waspsandhornetsremoval.com"
+                className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-bold transition-all text-amber-500 hover:text-amber-400"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                info@waspsandhornetsremoval.com
+              </a>
+              <a
+                href="https://www.waspsandhornetsremoval.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-bold transition-all text-slate-300 hover:text-white"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                waspsandhornetsremoval.com
               </a>
             </div>
           </div>
