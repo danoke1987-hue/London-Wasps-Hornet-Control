@@ -5,7 +5,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { Bug, Phone, Menu, X, ChevronDown, CheckCircle, Shield } from 'lucide-react';
+import { Bug, Phone, Menu, X, ChevronDown, CheckCircle, Shield, Globe, Languages } from 'lucide-react';
+import { useLanguage, languages } from '../context/LanguageContext';
 
 interface NavbarProps {
   onNavigate: (sectionId: string) => void;
@@ -13,6 +14,8 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
+  const { currentLanguage, setLanguage, t, isRtl } = useLanguage();
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -121,8 +124,6 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
               </span>
             </div>
           </Link>
-
-          {/* Desktop Nav Items */}
           <div className="hidden lg:flex items-center gap-5">
             {/* Home / Scroll Link */}
             <button
@@ -131,7 +132,7 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
                 isHome && activeSection === 'hero' ? 'text-amber-500 font-bold' : 'text-slate-300'
               }`}
             >
-              Home
+              {t('nav.home')}
             </button>
 
             {/* Services Dropdown */}
@@ -141,7 +142,7 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button className="text-sm font-semibold tracking-wide text-slate-300 hover:text-amber-500 transition-colors cursor-pointer flex items-center gap-1">
-                Services <ChevronDown className="w-4 h-4" />
+                {t('nav.services')} <ChevronDown className="w-4 h-4" />
               </button>
               
               <div className="absolute top-full left-0 w-60 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl p-2.5 mt-1 hidden group-hover:block animate-fade-in">
@@ -209,7 +210,7 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className="block text-xs font-bold text-slate-300 hover:text-amber-500 hover:bg-slate-800/50 p-2 rounded-lg transition-colors"
+                    className="block text-xs font-bold text-slate-300 hover:text-amber-500 hover:bg-slate-800/50 p-2.5 rounded-lg transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -231,7 +232,7 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
                 isHome && activeSection === 'estimator' ? 'text-amber-500 font-bold' : 'text-slate-300'
               }`}
             >
-              Cost Estimator
+              {t('nav.calculator')}
             </button>
 
             {/* Multilingual Support */}
@@ -241,7 +242,7 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
                 isHome && activeSection === 'multilingual-support' ? 'text-amber-500 font-bold' : 'text-slate-300'
               }`}
             >
-              Languages 🌐
+              {t('nav.languages')}
             </button>
 
             {/* FAQs */}
@@ -251,31 +252,95 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
                 isHome && activeSection === 'faqs' ? 'text-amber-500 font-bold' : 'text-slate-300'
               }`}
             >
-              FAQs
+              {t('nav.faqs')}
             </button>
           </div>
 
           {/* Call and Book Buttons */}
           <div className="hidden sm:flex items-center gap-4">
+            {/* Language Dropdown Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                className="flex items-center gap-1.5 bg-slate-800/80 border border-slate-700/80 hover:bg-slate-750 px-3 py-2 rounded-xl text-xs font-black text-white hover:text-amber-500 transition-all cursor-pointer select-none"
+              >
+                <span>{languages.find(l => l.code === currentLanguage)?.flag}</span>
+                <span className="uppercase tracking-wider">{currentLanguage}</span>
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {langDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl p-1.5 z-50 max-h-72 overflow-y-auto custom-scrollbar">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setLangDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-2.5 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2 hover:bg-slate-800 hover:text-amber-500 cursor-pointer ${
+                        currentLanguage === lang.code ? 'text-amber-500 bg-slate-850 font-black' : 'text-slate-300'
+                      }`}
+                    >
+                      <span className="text-sm">{lang.flag}</span>
+                      <div className="flex flex-col text-left">
+                        <span className="leading-none text-[11px]">{lang.nativeName}</span>
+                        <span className="text-[8px] text-slate-500 mt-0.5 uppercase tracking-wider">{lang.name}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <a
               href="tel:02079460852"
               className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-transform active:scale-95 shadow-md shadow-red-900/20 hover:shadow-red-900/40"
               id="navbar-emergency-call"
             >
               <Phone className="w-4 h-4" />
-              <span className="hidden md:inline">Call 24/7:</span> 020 7946 0852
+              <span className="hidden md:inline">{t('nav.callNow')}:</span> 020 7946 0852
             </a>
             <button
               onClick={() => handleItemClick('book')}
               className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-sm transition-all active:scale-95 shadow-md shadow-amber-500/10"
               id="navbar-book-online"
             >
-              Book Online
+              {t('hero.btnBook')}
             </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex lg:hidden">
+          <div className="flex lg:hidden items-center gap-3">
+            {/* Simple Mobile Lang Button */}
+            <div className="relative">
+              <button
+                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                className="flex items-center gap-1 bg-slate-800 border border-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-black text-white cursor-pointer select-none"
+              >
+                <span>{languages.find(l => l.code === currentLanguage)?.flag}</span>
+                <span className="uppercase">{currentLanguage}</span>
+              </button>
+
+              {langDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-slate-900 border border-slate-850 rounded-xl shadow-2xl p-1 z-50 max-h-60 overflow-y-auto custom-scrollbar">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setLangDropdownOpen(false);
+                      }}
+                      className="w-full text-left px-2 py-1.5 rounded-lg text-[11px] font-bold transition-colors flex items-center gap-1.5 hover:bg-slate-800 hover:text-amber-500 text-slate-300 cursor-pointer"
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.nativeName}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-slate-300 hover:text-white p-2 rounded-md focus:outline-none"
@@ -296,7 +361,7 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
               onClick={() => handleItemClick('hero')}
               className="block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
             >
-              Home
+              {t('nav.home')}
             </button>
 
             {/* Specialist Services Sub-menu */}
@@ -349,20 +414,46 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
               onClick={() => handleItemClick('estimator')}
               className="block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
             >
-              Cost Estimator Calculator
+              {t('nav.calculator')}
             </button>
             <button
               onClick={() => handleItemClick('multilingual-support')}
               className="block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
             >
-              Languages & Translators 🌐
+              {t('nav.languages')}
             </button>
             <button
               onClick={() => handleItemClick('faqs')}
               className="block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
             >
-              FAQs & Safety Rules
+              {t('nav.faqs')}
             </button>
+
+            {/* Mobile Language Grid */}
+            <div className="px-3 pt-6 border-t border-slate-800">
+              <div className="text-xs font-black uppercase text-slate-400 tracking-wider mb-3">
+                Select Website Language / Diller 🌐
+              </div>
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      setLanguage(lang.code);
+                      setIsOpen(false);
+                    }}
+                    className={`p-2.5 rounded-xl border flex flex-col items-center justify-center transition-all text-center cursor-pointer ${
+                      currentLanguage === lang.code
+                        ? 'bg-amber-500 border-amber-500 text-slate-950 font-black shadow-lg'
+                        : 'bg-slate-850 border-slate-800 text-slate-300 hover:bg-slate-800'
+                    }`}
+                  >
+                    <span className="text-lg leading-none">{lang.flag}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider mt-1">{lang.code}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
             {/* Mobile Actions */}
             <div className="pt-6 border-t border-slate-800 space-y-3 px-3">
@@ -371,13 +462,13 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
                 className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white w-full py-3 rounded-lg text-base font-bold transition-all shadow-md"
               >
                 <Phone className="w-5 h-5" />
-                Emergency Call: 020 7946 0852
+                020 7946 0852
               </a>
               <button
                 onClick={() => handleItemClick('book')}
                 className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-lg text-base transition-all"
               >
-                Book Online
+                {t('hero.btnBook')}
               </button>
             </div>
           </div>

@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Pages
 import Home from './pages/Home';
@@ -41,40 +42,42 @@ export default function App() {
   };
 
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-800 flex flex-col justify-between">
-        
-        {/* Reset Scroll Position automatically on Route Changes */}
-        <ScrollToTop />
+    <LanguageProvider>
+      <BrowserRouter>
+        <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-800 flex flex-col justify-between">
+          
+          {/* Reset Scroll Position automatically on Route Changes */}
+          <ScrollToTop />
 
-        {/* Sticky Top-level Navigation */}
-        <Navbar onNavigate={handleNavigate} activeSection={activeSection} />
+          {/* Sticky Top-level Navigation */}
+          <Navbar onNavigate={handleNavigate} activeSection={activeSection} />
 
-        {/* Core Content View Routing */}
-        <main className="flex-grow">
-          <Routes>
-            <Route 
-              path="/" 
-              element={
-                <Home 
-                  onCheckPostcode={handleCheckPostcode} 
-                  prefilledPostcode={prefilledPostcode}
-                  prefilledEstimates={prefilledEstimates}
-                  setPrefilledEstimates={setPrefilledEstimates}
-                />
-              } 
-            />
-            <Route path="/zone/:id" element={<ZonePage />} />
-            <Route path="/service/:id" element={<ServicePage />} />
-            <Route path="/pest/:id" element={<PestPage />} />
-            <Route path="/area/:areaName/:postcode" element={<PostcodeAreaPage />} />
-          </Routes>
-        </main>
+          {/* Core Content View Routing */}
+          <main className="flex-grow">
+            <Routes>
+              <Route 
+                path="/" 
+                element={
+                  <Home 
+                    onCheckPostcode={handleCheckPostcode} 
+                    prefilledPostcode={prefilledPostcode}
+                    prefilledEstimates={prefilledEstimates}
+                    setPrefilledEstimates={setPrefilledEstimates}
+                  />
+                } 
+              />
+              <Route path="/zone/:id" element={<ZonePage />} />
+              <Route path="/service/:id" element={<ServicePage />} />
+              <Route path="/pest/:id" element={<PestPage />} />
+              <Route path="/area/:areaName/:postcode" element={<PostcodeAreaPage />} />
+            </Routes>
+          </main>
 
-        {/* Footer Content */}
-        <Footer onNavigate={handleNavigate} />
+          {/* Footer Content */}
+          <Footer onNavigate={handleNavigate} />
 
-      </div>
-    </BrowserRouter>
+        </div>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }

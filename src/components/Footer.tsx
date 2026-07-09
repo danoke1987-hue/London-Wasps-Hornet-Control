@@ -6,12 +6,14 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Bug, Phone, Mail, Clock, HelpCircle, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
+  const { t } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -52,7 +54,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </span>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed font-semibold">
-              Professional, certified wasp and hornet nest eradication services. Operating 24/7/365 across London, Surrey, Kent, Essex, Hertfordshire, and Berkshire.
+              {t('footer.desc')}
             </p>
             <div className="pt-2 flex flex-col gap-2">
               <a
@@ -170,7 +172,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div className="md:col-span-4 text-center md:text-right text-[11px] text-slate-500 font-bold uppercase tracking-wider">
-            © 2026 Wasps & Hornets Removal. All Rights Reserved.
+            © 2026 Wasps & Hornets Removal. {t('footer.rights')}
           </div>
 
         </div>

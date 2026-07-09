@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { BookingDetails, CostEstimate } from '../types';
 import { MapPin, Calendar, Clock, AlertCircle, Phone, Sparkles, CheckCircle2, ShieldAlert, ArrowRight, Loader2, Play } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface BookingFormProps {
   prefilledPest?: 'wasp' | 'hornet' | 'unidentified';
@@ -20,6 +21,7 @@ interface BookingFormProps {
 }
 
 export default function BookingForm({ prefilledPest, prefilledEstimates, defaultPostcode = '' }: BookingFormProps) {
+  const { t } = useLanguage();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -98,13 +100,13 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
             {/* Header */}
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-xs font-bold text-amber-600 uppercase tracking-widest mb-3">
-                Priority Dispatch System
+                {t('book.title')}
               </h2>
               <h3 className="text-3xl font-black text-slate-900 tracking-tight">
                 Schedule Nest Eradication
               </h3>
               <p className="mt-3 text-sm text-slate-600 font-medium">
-                Fill in details to request immediate dispatch or schedule a flexible appointment. All bookings are protected by our 100% money-back eradication guarantee.
+                {t('book.subtitle')}
               </p>
             </div>
 
@@ -116,7 +118,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   {/* Name */}
                   <div>
                     <label htmlFor="book-name" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Full Name *
+                      {t('book.fullName')}
                     </label>
                     <input
                       type="text"
@@ -132,10 +134,10 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   {/* Phone */}
                   <div>
                     <label htmlFor="book-phone" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Contact Phone Number *
+                      {t('book.phone')}
                     </label>
                     <input
-                      type="tel"
+                      type="text"
                       id="book-phone"
                       required
                       placeholder="e.g. 07700 900077"
@@ -150,7 +152,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   {/* Email */}
                   <div>
                     <label htmlFor="book-email" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Email Address *
+                      {t('book.email')}
                     </label>
                     <input
                       type="email"
@@ -166,7 +168,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   {/* Postcode */}
                   <div>
                     <label htmlFor="book-postcode" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      London Postcode *
+                      {t('book.postcode')}
                     </label>
                     <input
                       type="text"
@@ -240,7 +242,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   {/* Preferred Date */}
                   <div>
                     <label htmlFor="book-date" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Preferred Date
+                      {t('book.date')}
                     </label>
                     <div className="relative">
                       <input
@@ -256,7 +258,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   {/* Preferred Time */}
                   <div>
                     <label htmlFor="book-timeslot" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Preferred Time Slot
+                      {t('book.time')}
                     </label>
                     <select
                       id="book-timeslot"
@@ -277,7 +279,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   {/* Nest Location Detail */}
                   <div>
                     <label htmlFor="book-location" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Where is the nest located? *
+                      {t('book.nestLoc')}
                     </label>
                     <input
                       type="text"
@@ -293,7 +295,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   {/* Language Support Selection */}
                   <div>
                     <label htmlFor="book-language" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Language Support
+                      {t('book.lang')}
                     </label>
                     <select
                       id="book-language"
@@ -320,7 +322,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                 {/* Additional Notes */}
                 <div>
                   <label htmlFor="book-notes" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                    Additional notes, safety instructions or parking details (Optional)
+                    {t('book.notes')}
                   </label>
                   <textarea
                     id="book-notes"
@@ -353,7 +355,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                     </>
                   ) : (
                     <>
-                      Confirm Priority Booking
+                      {t('book.btnSubmit')}
                       <ArrowRight className="w-5 h-5" />
                     </>
                   )}

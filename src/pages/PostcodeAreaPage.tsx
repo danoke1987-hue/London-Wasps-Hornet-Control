@@ -13,8 +13,10 @@ import {
   ShieldCheck, MapPin, Timer, Users, Phone, 
   ArrowLeft, CheckCircle2, ChevronRight, AlertTriangle, Bug, HelpCircle, ShieldAlert
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function PostcodeAreaPage() {
+  const { t } = useLanguage();
   const { areaName, postcode } = useParams<{ areaName: string; postcode: string }>();
   const navigate = useNavigate();
   
@@ -149,7 +151,7 @@ export default function PostcodeAreaPage() {
                   <div className="text-amber-500 mb-1 flex justify-center lg:justify-start">
                     <MapPin className="w-5 h-5" />
                   </div>
-                  <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">Local Hub</span>
+                  <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">{t('county.localHub')}</span>
                   <span className="block text-xs font-black text-white mt-0.5 leading-tight">{county.dispatchHub}</span>
                 </div>
 
@@ -157,7 +159,7 @@ export default function PostcodeAreaPage() {
                   <div className="text-amber-500 mb-1 flex justify-center lg:justify-start">
                     <Timer className="w-5 h-5" />
                   </div>
-                  <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">Est. Arrival</span>
+                  <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">{t('county.estArrival')}</span>
                   <span className="block text-xs font-black text-white mt-0.5">{localResponseTime} Minutes</span>
                 </div>
 
@@ -165,7 +167,7 @@ export default function PostcodeAreaPage() {
                   <div className="text-amber-500 mb-1 flex justify-center lg:justify-start">
                     <Users className="w-5 h-5" />
                   </div>
-                  <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">On-Call Techs</span>
+                  <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">{t('county.activeTechs')}</span>
                   <span className="block text-xs font-black text-white mt-0.5">{localTechs} Specialists</span>
                 </div>
 
@@ -173,8 +175,8 @@ export default function PostcodeAreaPage() {
                   <div className="text-amber-500 mb-1 flex justify-center lg:justify-start">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
-                  <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">Pest Warranty</span>
-                  <span className="block text-xs font-black text-amber-500 mt-0.5">100% Eradicated</span>
+                  <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">{t('county.warranty')}</span>
+                  <span className="block text-xs font-black text-amber-500 mt-0.5">{t('county.warrantyVal')}</span>
                 </div>
               </div>
             </div>

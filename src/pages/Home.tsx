@@ -16,6 +16,7 @@ import Reviews from '../components/Reviews';
 import FAQs from '../components/FAQs';
 import { CostEstimate } from '../types';
 import { Home as HomeIcon, Building2, Timer, CheckCircle2, Phone } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface HomeProps {
   onCheckPostcode: (postcode: string) => void;
@@ -30,6 +31,7 @@ export default function Home({
   prefilledEstimates,
   setPrefilledEstimates
 }: HomeProps) {
+  const { t } = useLanguage();
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const [selectedPest, setSelectedPest] = useState<'wasp' | 'hornet' | 'unidentified'>('wasp');
