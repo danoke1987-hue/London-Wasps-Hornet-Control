@@ -37,6 +37,7 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
   const [nestLocation, setNestLocation] = useState('loft');
   const [preferredDate, setPreferredDate] = useState('');
   const [preferredTimeSlot, setPreferredTimeSlot] = useState('AM (08:00 - 12:00)');
+  const [languageSupport, setLanguageSupport] = useState('English');
   const [additionalNotes, setAdditionalNotes] = useState('');
 
   // Submit and loading states
@@ -272,19 +273,48 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
                   </div>
                 </div>
 
-                {/* Nest Location Detail */}
-                <div>
-                  <label htmlFor="book-location" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                    Where is the nest located? (e.g. Under roof tiles, loft, garden tree, chimney)
-                  </label>
-                  <input
-                    type="text"
-                    id="book-location"
-                    placeholder="e.g. Inside the attic under the roof fascia"
-                    value={nestLocation}
-                    onChange={(e) => setNestLocation(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 focus:border-amber-500 rounded-xl px-4 py-3 text-sm font-semibold outline-none"
-                  />
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {/* Nest Location Detail */}
+                  <div>
+                    <label htmlFor="book-location" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                      Where is the nest located? *
+                    </label>
+                    <input
+                      type="text"
+                      id="book-location"
+                      required
+                      placeholder="e.g. Inside the attic / roof tiles"
+                      value={nestLocation}
+                      onChange={(e) => setNestLocation(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-200 focus:border-amber-500 rounded-xl px-4 py-3 text-sm font-semibold outline-none focus:ring-1 focus:ring-amber-500"
+                    />
+                  </div>
+
+                  {/* Language Support Selection */}
+                  <div>
+                    <label htmlFor="book-language" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                      Language Support
+                    </label>
+                    <select
+                      id="book-language"
+                      name="languageSupport"
+                      value={languageSupport}
+                      onChange={(e) => setLanguageSupport(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-200 focus:border-amber-500 rounded-xl px-4 py-3 text-sm font-semibold outline-none focus:ring-1 focus:ring-amber-500"
+                    >
+                      <option value="English">English Support (Default)</option>
+                      <option value="Polish">Polski (Polish)</option>
+                      <option value="Spanish">Español (Spanish)</option>
+                      <option value="Bengali">বাংলা (Bengali)</option>
+                      <option value="Gujarati">ગુજરાતી (Gujarati)</option>
+                      <option value="French">Français (French)</option>
+                      <option value="Italian">Italiano (Italian)</option>
+                      <option value="Portuguese">Português (Portuguese)</option>
+                      <option value="Romanian">Română (Romanian)</option>
+                      <option value="Turkish">Türkçe (Turkish)</option>
+                      <option value="Arabic">العربية (Arabic)</option>
+                    </select>
+                  </div>
                 </div>
 
                 {/* Additional Notes */}

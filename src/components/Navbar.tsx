@@ -234,6 +234,16 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
               Cost Estimator
             </button>
 
+            {/* Multilingual Support */}
+            <button
+              onClick={() => handleItemClick('multilingual-support')}
+              className={`text-sm font-semibold tracking-wide hover:text-amber-500 transition-colors cursor-pointer py-2 ${
+                isHome && activeSection === 'multilingual-support' ? 'text-amber-500 font-bold' : 'text-slate-300'
+              }`}
+            >
+              Languages 🌐
+            </button>
+
             {/* FAQs */}
             <button
               onClick={() => handleItemClick('faqs')}
@@ -340,6 +350,12 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
               className="block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
             >
               Cost Estimator Calculator
+            </button>
+            <button
+              onClick={() => handleItemClick('multilingual-support')}
+              className="block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
+            >
+              Languages & Translators 🌐
             </button>
             <button
               onClick={() => handleItemClick('faqs')}
