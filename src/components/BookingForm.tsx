@@ -511,11 +511,11 @@ export default function BookingForm({ prefilledPest, prefilledEstimates, default
 
             {/* Directly Call trigger */}
             <a
-              href="tel:02079460852"
+              href="tel:02088198627"
               className="block text-center bg-red-600 hover:bg-red-500 text-white font-black py-4 rounded-xl text-base transition-colors"
             >
               <Phone className="w-5 h-5 inline mr-2 align-middle animate-pulse" />
-              Direct Emergency Hotline: 020 7946 0852
+              Direct Emergency Hotline: 020 8819 8627
             </a>
 
           </div>

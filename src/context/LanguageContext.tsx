@@ -39,7 +39,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'FAQs',
     'nav.reviews': 'Reviews',
     'nav.callNow': 'Call Dispatcher',
-    'nav.emergencyHotline': 'Emergency Hotline: 020 7946 0852',
+    'nav.emergencyHotline': 'Emergency Hotline: 020 8819 8627',
     'nav.coverage': 'Postcode Coverage',
 
     // Hero Section
@@ -157,7 +157,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'Częste Pytania',
     'nav.reviews': 'Opinie',
     'nav.callNow': 'Zadzwoń do Dyspozytora',
-    'nav.emergencyHotline': 'Infolinia Ratunkowa: 020 7946 0852',
+    'nav.emergencyHotline': 'Infolinia Ratunkowa: 020 8819 8627',
     'nav.coverage': 'Zasięg Kodów Pocztowych',
 
     // Hero Section
@@ -275,7 +275,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'Preguntas Frecuentes',
     'nav.reviews': 'Opiniones',
     'nav.callNow': 'Llamar al Despachador',
-    'nav.emergencyHotline': 'Línea de Emergencia: 020 7946 0852',
+    'nav.emergencyHotline': 'Línea de Emergencia: 020 8819 8627',
     'nav.coverage': 'Cobertura de Códigos Postales',
 
     // Hero Section
@@ -511,7 +511,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'વારંવાર પૂછાતા પ્રશ્નો',
     'nav.reviews': 'ગ્રાહક સમીક્ષા',
     'nav.callNow': 'ડિસ્પેચરને કૉલ કરો',
-    'nav.emergencyHotline': 'ઇમરજન્સી હેલ્પલાઇન: 020 7946 0852',
+    'nav.emergencyHotline': 'ઇમરજન્સી હેલ્પલાઇન: 020 8819 8627',
     'nav.coverage': 'પોસ્ટકોડ કવરેજ',
 
     // Hero Section
@@ -629,7 +629,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'FAQs',
     'nav.reviews': 'Avis',
     'nav.callNow': 'Appeler le Répartiteur',
-    'nav.emergencyHotline': 'Urgence 24h/24 : 020 7946 0852',
+    'nav.emergencyHotline': 'Urgence 24h/24 : 020 8819 8627',
     'nav.coverage': 'Couverture Postale',
 
     // Hero Section
@@ -747,7 +747,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'Domande Frequenti',
     'nav.reviews': 'Recensioni',
     'nav.callNow': 'Chiama Operatore',
-    'nav.emergencyHotline': 'Pronto Intervento: 020 7946 0852',
+    'nav.emergencyHotline': 'Pronto Intervento: 020 8819 8627',
     'nav.coverage': 'Copertura CAP',
 
     // Hero Section
@@ -865,7 +865,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'FAQs',
     'nav.reviews': 'Opiniões',
     'nav.callNow': 'Ligar para Despachante',
-    'nav.emergencyHotline': 'Linha de Emergência: 020 7946 0852',
+    'nav.emergencyHotline': 'Linha de Emergência: 020 8819 8627',
     'nav.coverage': 'Cobertura Postal',
 
     // Hero Section
@@ -983,7 +983,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'Întrebări Frecvente',
     'nav.reviews': 'Recenzii',
     'nav.callNow': 'Sună Dispecerul',
-    'nav.emergencyHotline': 'Urgențe 24/7: 020 7946 0852',
+    'nav.emergencyHotline': 'Urgențe 24/7: 020 8819 8627',
     'nav.coverage': 'Zonă de Acoperire',
 
     // Hero Section
@@ -1101,7 +1101,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'Sık Sorulan Sorular',
     'nav.reviews': 'Yorumlar',
     'nav.callNow': 'Merkezi Ara',
-    'nav.emergencyHotline': 'Acil Yardım Hattı: 020 7946 0852',
+    'nav.emergencyHotline': 'Acil Yardım Hattı: 020 8819 8627',
     'nav.coverage': 'Posta Kodu Alanı',
 
     // Hero Section
@@ -1219,7 +1219,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     'nav.faqs': 'الأسئلة الشائعة',
     'nav.reviews': 'التقييمات',
     'nav.callNow': 'اتصل بالموظف المختص',
-    'nav.emergencyHotline': 'الخط الساخن للطوارئ: 020 7946 0852',
+    'nav.emergencyHotline': 'الخط الساخن للطوارئ: 020 8819 8627',
     'nav.coverage': 'مناطق التغطية',
 
     // Hero Section

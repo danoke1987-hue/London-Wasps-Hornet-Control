@@ -125,7 +125,7 @@ export default function PestPage() {
                 }
               </p>
               <a
-                href="tel:02079460852"
+                href="tel:02088198627"
                 className={`block text-center rounded-xl p-4 transition-all shadow-lg text-white ${
                   isProtected 
                     ? 'bg-emerald-600 hover:bg-emerald-500' 
@@ -137,7 +137,7 @@ export default function PestPage() {
                 </span>
                 <span className="text-xl font-black flex items-center justify-center gap-2">
                   <Phone className="w-5 h-5" />
-                  020 7946 0852
+                  020 8819 8627
                 </span>
               </a>
               <span className="text-[10px] text-slate-500 font-bold block">

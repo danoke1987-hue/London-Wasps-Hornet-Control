@@ -50,7 +50,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <Bug className="text-slate-950 w-5 h-5" />
               </div>
               <span className="text-base font-black uppercase tracking-tight text-white leading-none">
-                Wasps & Hornets Removal
+                Wasp Nest Exterminators
               </span>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed font-semibold">
@@ -58,27 +58,27 @@ export default function Footer({ onNavigate }: FooterProps) {
             </p>
             <div className="pt-2 flex flex-col gap-2">
               <a
-                href="tel:02079460852"
+                href="tel:02088198627"
                 className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-bold transition-all text-red-500 hover:text-red-400"
               >
                 <Phone className="w-3.5 h-3.5" />
-                Emergency Hotline: 020 7946 0852
+                Emergency Hotline: 020 8819 8627
               </a>
               <a
-                href="mailto:info@waspsandhornetsremoval.com"
+                href="mailto:info@waspnestexterminators.co.uk"
                 className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-bold transition-all text-amber-500 hover:text-amber-400"
               >
                 <Mail className="w-3.5 h-3.5" />
-                info@waspsandhornetsremoval.com
+                info@waspnestexterminators.co.uk
               </a>
               <a
-                href="https://www.waspsandhornetsremoval.com"
+                href="https://www.waspnestexterminators.co.uk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-bold transition-all text-slate-300 hover:text-white"
               >
                 <Globe className="w-3.5 h-3.5" />
-                waspsandhornetsremoval.com
+                waspnestexterminators.co.uk
               </a>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div className="md:col-span-4 text-center md:text-right text-[11px] text-slate-500 font-bold uppercase tracking-wider">
-            © 2026 Wasps & Hornets Removal. {t('footer.rights')}
+            © 2026 Wasp Nest Exterminators. {t('footer.rights')}
           </div>
 
         </div>

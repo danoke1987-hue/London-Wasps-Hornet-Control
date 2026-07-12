@@ -179,7 +179,7 @@ export default function PestIdentifier({ onSelectPest, onNavigate }: PestIdentif
                     <ArrowRight className="w-4 h-4" />
                   </button>
                   <a
-                    href="tel:02079460852"
+                    href="tel:02088198627"
                     className="w-full sm:w-auto flex items-center justify-center gap-2 border border-red-600 hover:bg-red-50 text-red-600 font-extrabold py-3.5 px-6 rounded-xl text-sm transition-all"
                   >
                     <Phone className="w-4 h-4" />

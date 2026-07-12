@@ -69,7 +69,7 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
             {/* Hero CTA Actions */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <a
-                href="tel:02079460852"
+                href="tel:02088198627"
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-red-600 hover:bg-red-500 text-white font-black px-8 py-4 rounded-xl text-lg shadow-xl shadow-red-900/30 hover:shadow-red-600/40 transition-all active:scale-95"
                 id="hero-call-now"
               >
@@ -149,7 +149,7 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
                 </div>
 
                 <a
-                  href="tel:02079460852"
+                  href="tel:02088198627"
                   className="block text-center bg-slate-950 border border-red-600 hover:border-red-500 rounded-xl p-4 transition-all group"
                 >
                   <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">
@@ -157,7 +157,7 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
                   </span>
                   <span className="text-xl font-black text-red-500 flex items-center justify-center gap-2 group-hover:text-red-400">
                     <Phone className="w-5 h-5 shrink-0" />
-                    020 7946 0852
+                    020 8819 8627
                   </span>
                 </a>
 

@@ -107,11 +107,11 @@ export default function FAQs() {
             </p>
           </div>
           <a
-            href="tel:02079460852"
+            href="tel:02088198627"
             className="bg-slate-900 hover:bg-slate-800 text-amber-500 font-extrabold py-3 px-5 rounded-xl text-xs flex items-center gap-1.5 shadow-sm shadow-slate-950/10 shrink-0"
           >
             <PhoneCall className="w-4 h-4" />
-            Call Desk: 020 7946 0852
+            Call Desk: 020 8819 8627
           </a>
         </div>
 

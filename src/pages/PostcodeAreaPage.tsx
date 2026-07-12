@@ -58,11 +58,11 @@ export default function PostcodeAreaPage() {
           </div>
           <div className="flex flex-col gap-2 pt-2">
             <a
-              href="tel:02079460852"
+              href="tel:02088198627"
               className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md"
             >
               <Phone className="w-4 h-4" />
-              Call Dispatcher: 020 7946 0852
+              Call Dispatcher: 020 8819 8627
             </a>
             <Link
               to="/"
@@ -188,7 +188,7 @@ export default function PostcodeAreaPage() {
                 Connect directly with our regional controller for a free expert quote and instant booking.
               </p>
               <a
-                href="tel:02079460852"
+                href="tel:02088198627"
                 className="block text-center bg-red-600 hover:bg-red-500 text-white rounded-xl p-4 transition-all"
               >
                 <span className="block text-[9px] font-bold text-slate-100 uppercase tracking-widest leading-none mb-1">
@@ -196,7 +196,7 @@ export default function PostcodeAreaPage() {
                 </span>
                 <span className="text-xl font-black flex items-center justify-center gap-2">
                   <Phone className="w-5 h-5" />
-                  020 7946 0852
+                  020 8819 8627
                 </span>
               </a>
               <span className="text-[10px] text-slate-500 font-bold block">

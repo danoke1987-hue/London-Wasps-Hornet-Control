@@ -34,7 +34,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇵🇱',
     welcome: 'Witamy! Usuwanie gniazd os i szerszeni w Londynie.',
     description: 'Oferujemy profesjonalne i bezpieczne usuwanie gniazd os i szerszeni przez 24 godziny na dobę, 7 dni w tygodniu. Bezpieczne dla dzieci i zwierząt domowych z pełną gwarancją.',
-    hotkeyText: 'Zadzwoń do nas pod numer 020 7946 0852. Współpracujemy z tłumaczem telefonicznym na żywo.',
+    hotkeyText: 'Zadzwoń do nas pod numer 020 8819 8627. Współpracujemy z tłumaczem telefonicznym na żywo.',
     phrases: {
       waspNest: 'Usuwanie gniazd os',
       emergency: 'Pomoc w nagłych wypadkach 24/7',
@@ -49,7 +49,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇪🇸',
     welcome: '¡Bienvenido! Eliminación de nidos de avispas y avispones en Londres.',
     description: 'Servicio profesional de erradicación de nidos de avispas y avispones las 24 horas, los 7 días de la semana. Seguro para niños y mascotas, respaldado por una garantía del 100%.',
-    hotkeyText: 'Llámenos ahora al 020 7946 0852. Ofrecemos asistencia con traductores telefónicos en tiempo real.',
+    hotkeyText: 'Llámenos ahora al 020 8819 8627. Ofrecemos asistencia con traductores telefónicos en tiempo real.',
     phrases: {
       waspNest: 'Eliminación de nidos de avispas',
       emergency: 'Urgencias 24 horas al día',
@@ -79,7 +79,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇮🇳',
     welcome: 'સ્વાગત છે! લંડનમાં ભમરી અને મધમાખીના માળાઓ હટાવવાની સેવા.',
     description: 'ચોવીસ કલાક (24/7) વ્યાવસાયિક ભમરીના માળા હટાવવાની અત્યંત સુરક્ષિત અને ઝડપી સેવા. બાળકો અને પાલતુ પ્રાણીઓ માટે સંપૂર્ણપણે સલામત.',
-    hotkeyText: 'અમને 020 7946 0852 પર કૉલ કરો. અમે ફોન પર ત્વરિત અનુવાદ સહાય પૂરી પાડી શકીએ છીએ.',
+    hotkeyText: 'અમને 020 8819 8627 પર કૉલ કરો. અમે ફોન પર ત્વરિત અનુવાદ સહાય પૂરી પાડી શકીએ છીએ.',
     phrases: {
       waspNest: 'ભમરીના માળા હટાવવા',
       emergency: '૨૪/૭ કટોકટી સેવા',
@@ -94,7 +94,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇫🇷',
     welcome: 'Bienvenue ! Éradication de nids de guêpes et de frelons à Londres.',
     description: 'Services professionnels d’élimination de nids de guêpes et frelons 24h/24, 7j/7. Totalement sûr pour les enfants et vos animaux, avec une garantie de ré-intervention gratuite.',
-    hotkeyText: 'Contactez-nous au 020 7946 0852. Nous disposons d’interprètes par téléphone en temps réel.',
+    hotkeyText: 'Contactez-nous au 020 8819 8627. Nous disposons d’interprètes par téléphone en temps réel.',
     phrases: {
       waspNest: 'Destruction de nids de guêpes',
       emergency: 'Intervention d’urgence 24h/7j',
@@ -109,7 +109,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇮🇹',
     welcome: 'Benvenuto! Rimozione nidi di vespe e calabroni a Londra.',
     description: 'Disinfestazione professionale di vespe e calabroni attiva 24 ore su 24. Trattamenti ecologici sicuri per la tua famiglia e animali domestici, coperti da polizza da £5M.',
-    hotkeyText: 'Chiamaci subito al numero 020 7946 0852. Possiamo attivare un traduttore simultaneo al telefono.',
+    hotkeyText: 'Chiamaci subito al numero 020 8819 8627. Possiamo attivare un traduttore simultaneo al telefono.',
     phrases: {
       waspNest: 'Rimozione nidi di vespe',
       emergency: 'Pronto intervento 24/7',
@@ -124,7 +124,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇵🇹',
     welcome: 'Bem-vindo! Eliminação de ninhos de vespas e vespões em Londres.',
     description: 'Remoção urgente e profissional de ninhos de vespas 24h por dia. Soluções de alta segurança para crianças e animais domésticos, com garantia absoluta de eliminação.',
-    hotkeyText: 'Ligue para 020 7946 0852. Fornecemos suporte imediato com intérpretes de chamada em português.',
+    hotkeyText: 'Ligue para 020 8819 8627. Fornecemos suporte imediato com intérpretes de chamada em português.',
     phrases: {
       waspNest: 'Remoção de ninhos de vespas',
       emergency: 'Serviço de urgência 24/7',
@@ -139,7 +139,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇷🇴',
     welcome: 'Bun venit! Îndepărtarea cuiburilor de viespi și gărgăuni în Londra.',
     description: 'Servicii de urgență 24/7 pentru eliminarea cuiburilor de viespi. Tratamente cu substanțe omologate COSHH, sigure pentru copii și animalele de companie.',
-    hotkeyText: 'Sunați-ne la 020 7946 0852. Vă conectăm instantaneu cu un traducător live în timpul apelului.',
+    hotkeyText: 'Sunați-ne la 020 8819 8627. Vă conectăm instantaneu cu un traducător live în timpul apelului.',
     phrases: {
       waspNest: 'Eliminare cuiburi de viespi',
       emergency: 'Asistență de urgență 24/7',
@@ -154,7 +154,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇹🇷',
     welcome: 'Hoş geldiniz! Londra genelinde yaban arısı ve eşek arısı yuvaları imhası.',
     description: '7 gün 24 saat acil arı yuvası imha hizmeti. Evcil hayvanlar ve çocuklarınız için tamamen zararsız ilaçlama prosedürleri, %100 kesin çözüm.',
-    hotkeyText: 'Hemen 020 7946 0852 numaralı telefonu arayın. Telefonda anında Türkçe tercüman bağlayabiliriz.',
+    hotkeyText: 'Hemen 020 8819 8627 numaralı telefonu arayın. Telefonda anında Türkçe tercüman bağlayabiliriz.',
     phrases: {
       waspNest: 'Yaban arısı yuvası imhası',
       emergency: '7/24 Kesintisiz Acil Destek',
@@ -169,7 +169,7 @@ const languagesData: LanguageDetail[] = [
     flag: '🇸🇦',
     welcome: 'مرحباً بكم! خدمة التخلص السريع من أعشاش الدبابير في لندن.',
     description: 'خدمة مهنية معتمدة للقضاء على الدبابير والزنابير على مدار ٢٤ ساعة طوال أيام الأسبوع. آمن تماماً على الأطفال والحيوانات الأليفة مع ضمان إعادة الخدمة مجاناً.',
-    hotkeyText: 'اتصل بنا الآن على الرقم 02079460852. يمكننا توفير مترجم فوري مباشر باللغة العربية أثناء المكالمة.',
+    hotkeyText: 'اتصل بنا الآن على الرقم 02088198627. يمكننا توفير مترجم فوري مباشر باللغة العربية أثناء المكالمة.',
     phrases: {
       waspNest: 'إزالة أعشاش الدبابير والزنابير',
       emergency: 'استجابة سريعة للطوارئ ٢٤/٧',
@@ -380,7 +380,7 @@ export default function MultilingualSupport() {
 
                     <div className="grid sm:grid-cols-2 gap-3 pt-2">
                       <a
-                        href="tel:02079460852"
+                        href="tel:02088198627"
                         className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-black py-3 px-4 rounded-xl text-xs sm:text-sm transition-all"
                       >
                         <PhoneCall className="w-4 h-4" />

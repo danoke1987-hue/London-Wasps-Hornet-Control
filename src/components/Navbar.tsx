@@ -94,8 +94,8 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
         <span className="hidden md:inline">•</span>
         <span className="hidden md:inline">1-Hour Dispatch Across London & Surroundings</span>
         <span className="hidden md:inline">•</span>
-        <a href="tel:02079460852" className="underline font-bold hover:text-red-700 flex items-center gap-1">
-          <Phone className="w-3 h-3" /> 020 7946 0852
+        <a href="tel:02088198627" className="underline font-bold hover:text-red-700 flex items-center gap-1">
+          <Phone className="w-3 h-3" /> 020 8819 8627
         </a>
       </div>
 
@@ -117,10 +117,10 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
             </div>
             <div>
               <span className="block text-lg font-black tracking-tight uppercase leading-none text-amber-500 group-hover:text-amber-400 animate-pulse">
-                Wasps & Hornets
+                Wasp Nest
               </span>
               <span className="block text-xs font-semibold tracking-widest text-slate-400 uppercase leading-none mt-1">
-                Removal
+                Exterminators
               </span>
             </div>
           </Link>
@@ -294,12 +294,12 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
             </div>
 
             <a
-              href="tel:02079460852"
+              href="tel:02088198627"
               className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-transform active:scale-95 shadow-md shadow-red-900/20 hover:shadow-red-900/40"
               id="navbar-emergency-call"
             >
               <Phone className="w-4 h-4" />
-              <span className="hidden md:inline">{t('nav.callNow')}:</span> 020 7946 0852
+              <span className="hidden md:inline">{t('nav.callNow')}:</span> 020 8819 8627
             </a>
             <button
               onClick={() => handleItemClick('book')}
@@ -458,11 +458,11 @@ export default function Navbar({ onNavigate, activeSection }: NavbarProps) {
             {/* Mobile Actions */}
             <div className="pt-6 border-t border-slate-800 space-y-3 px-3">
               <a
-                href="tel:02079460852"
+                href="tel:02088198627"
                 className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white w-full py-3 rounded-lg text-base font-bold transition-all shadow-md"
               >
                 <Phone className="w-5 h-5" />
-                020 7946 0852
+                020 8819 8627
               </a>
               <button
                 onClick={() => handleItemClick('book')}
