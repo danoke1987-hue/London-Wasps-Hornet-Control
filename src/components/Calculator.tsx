@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { CostEstimate } from '../types';
 import { HelpCircle, ShieldCheck, CheckSquare, Sparkles, BookOpen, Calculator, Info } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface CalculatorProps {
   onEstimateChange: (estimate: CostEstimate & { propertyType: 'residential' | 'commercial'; nestCount: number; urgency: 'standard' | 'emergency'; location: 'low' | 'high' }) => void;
@@ -13,6 +14,7 @@ interface CalculatorProps {
 }
 
 export default function CostCalculator({ onEstimateChange, onNavigate }: CalculatorProps) {
+  const { t } = useLanguage();
   const [propertyType, setPropertyType] = useState<'residential' | 'commercial'>('residential');
   const [nestCount, setNestCount] = useState<number>(1);
   const [locationHeight, setLocationHeight] = useState<'low' | 'high'>('low');
@@ -64,13 +66,13 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3">
-            Instant Quote & Rate Calculator
+            {t('nav.calculator')}
           </h2>
           <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-            Transparent Pricing, No Hidden Extras
+            {t('calc.title')}
           </h3>
           <p className="mt-4 text-base text-slate-400 font-medium">
-            We believe in honest, upfront pricing. Use our interactive estimator to compute an accurate quote for your specific situation. Lock in this rate by booking directly.
+            {t('calc.subtitle')}
           </p>
         </div>
 
@@ -83,7 +85,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
             {/* Control 1: Property Type */}
             <div className="space-y-3">
               <label className="text-xs font-bold text-slate-300 uppercase tracking-widest block">
-                1. Select Property Type
+                {t('calc.propertyType')}
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -95,7 +97,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                   }`}
                   id="calc-prop-residential"
                 >
-                  Residential
+                  {t('calc.residential')}
                 </button>
                 <button
                   onClick={() => setPropertyType('commercial')}
@@ -106,7 +108,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                   }`}
                   id="calc-prop-commercial"
                 >
-                  Commercial
+                  {t('calc.commercial')}
                 </button>
               </div>
             </div>
@@ -115,10 +117,10 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-slate-300 uppercase tracking-widest">
-                  2. Number of Wasp/Hornet Nests
+                  {t('calc.nestCount')}
                 </label>
                 <span className="text-xs text-amber-500 font-bold bg-amber-500/10 px-2.5 py-1 rounded">
-                  Each Extra Nest Only +£30
+                  {t('calc.nestCountDesc')}
                 </span>
               </div>
               <div className="flex items-center gap-3">
@@ -142,7 +144,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
             {/* Control 3: Altitude/Location */}
             <div className="space-y-3">
               <label className="text-xs font-bold text-slate-300 uppercase tracking-widest block">
-                3. Nest Location & Altitude
+                {t('calc.location')}
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -154,7 +156,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                   }`}
                   id="calc-height-low"
                 >
-                  <span className="block font-bold text-sm leading-none">Reachable / Standard</span>
+                  <span className="block font-bold text-sm leading-none">{t('calc.lowGround')}</span>
                   <span className={`block text-[11px] mt-1 font-medium ${locationHeight === 'low' ? 'text-slate-500' : 'text-slate-400'}`}>
                     Ground/1st Floor, reachable with standard tools (e.g. Garden, Loft with ladders, shed)
                   </span>
@@ -169,7 +171,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                   id="calc-height-high"
                 >
                   <span className="block font-bold text-sm leading-none flex items-center justify-between">
-                    High Reach (+£40)
+                    {t('calc.highRoof')}
                   </span>
                   <span className={`block text-[11px] mt-1 font-medium ${locationHeight === 'high' ? 'text-slate-500' : 'text-slate-400'}`}>
                     Roof height, requires high-reach extendable lances, chimney pots, high guttering or scaffolding.
@@ -181,7 +183,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
             {/* Control 4: Dispatch Urgency */}
             <div className="space-y-3">
               <label className="text-xs font-bold text-slate-300 uppercase tracking-widest block">
-                4. Select Urgency Status
+                {t('calc.urgency')}
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -193,7 +195,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                   }`}
                   id="calc-urgency-standard"
                 >
-                  <span className="block font-bold text-sm leading-none">Standard Dispatch (+£0)</span>
+                  <span className="block font-bold text-sm leading-none">{t('calc.standard')}</span>
                   <span className={`block text-[11px] mt-1 font-medium ${urgency === 'standard' ? 'text-slate-500' : 'text-slate-400'}`}>
                     Same-day or next-day flexible slot. Standard business hours response.
                   </span>
@@ -208,7 +210,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                   id="calc-urgency-emergency"
                 >
                   <span className="block font-bold text-sm leading-none flex items-center justify-between text-red-600 font-extrabold">
-                    Emergency 24/7 (+£45)
+                    {t('calc.emergency')}
                   </span>
                   <span className={`block text-[11px] mt-1 font-medium ${urgency === 'emergency' ? 'text-slate-500' : 'text-slate-400'}`}>
                     Rapid 1-hour dispatch. Guaranteed late night, weekend, or bank holiday call-out.
@@ -274,7 +276,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                 <div className="flex items-end justify-between">
                   <div>
                     <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest">
-                      Estimated Total Price
+                      {t('calc.estTotal')}
                     </span>
                     <span className="text-slate-300 text-xs mt-1 block">Includes UK VAT & RAMS</span>
                   </div>
@@ -289,7 +291,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
               <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 text-xs">
                 <div className="flex items-center gap-1.5 text-emerald-500 font-bold">
                   <ShieldCheck className="w-4 h-4" />
-                  <span>100% Eradication Guarantee Included</span>
+                  <span>{t('calc.warrantyIncluded')}</span>
                 </div>
                 <p className="text-slate-400 leading-normal">
                   If any wasps survive the treated nest 48 hours post-treatment, we will return and re-treat the area completely free of charge.
@@ -303,7 +305,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                 className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-4 rounded-xl text-base transition-all active:scale-95 text-center block cursor-pointer"
                 id="btn-calc-proceed"
               >
-                Book This Rate Online
+                {t('calc.bookWithEst')}
               </button>
               <div className="text-center">
                 <span className="text-[11px] text-slate-500 font-semibold flex items-center justify-center gap-1">

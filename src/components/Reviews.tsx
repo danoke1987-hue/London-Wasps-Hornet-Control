@@ -6,8 +6,10 @@
 import React, { useState } from 'react';
 import { testimonials } from '../data/testimonials';
 import { Star, ShieldCheck, Quote, CheckCircle2, Award } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Reviews() {
+  const { t } = useLanguage();
   const [filterType, setFilterType] = useState<'All' | 'Residential' | 'Commercial'>('All');
 
   const filteredReviews = filterType === 'All'
@@ -23,13 +25,13 @@ export default function Reviews() {
           
           <div className="text-center lg:text-left space-y-2">
             <h2 className="text-xs font-bold text-amber-600 uppercase tracking-widest">
-              Verified Client Trust
+              {t('reviews.title')}
             </h2>
             <h3 className="text-3xl font-black text-slate-900 tracking-tight">
               Loved by Londoners
             </h3>
             <p className="text-sm text-slate-500 font-medium">
-              We hold a 4.9/5 star rating across Trustpilot, Google Reviews, and Checkatrade for pest control quality.
+              {t('reviews.subtitle')}
             </p>
           </div>
 

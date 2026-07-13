@@ -237,14 +237,14 @@ export default function MultilingualSupport() {
               Select your preferred language:
             </div>
             
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 max-h-[460px] overflow-y-auto pr-1.5 custom-scrollbar">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2 max-h-[460px] overflow-y-auto pr-1.5 custom-scrollbar">
               {languagesData.map((lang) => {
                 const isSelected = selectedLangId === lang.id;
                 return (
                   <button
                     key={lang.id}
                     onClick={() => setSelectedLangId(lang.id)}
-                    className={`w-full text-left p-3.5 rounded-xl border-2 transition-all flex items-center gap-3 cursor-pointer focus:outline-none ${
+                    className={`w-full text-left p-2.5 sm:p-3.5 rounded-xl border-2 transition-all flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-3 cursor-pointer focus:outline-none ${
                       isSelected
                         ? 'bg-slate-950 border-slate-950 text-white font-black shadow-lg shadow-slate-950/10'
                         : 'bg-slate-50 border-slate-200/80 hover:bg-slate-100 text-slate-700 font-bold hover:text-slate-900'
@@ -253,7 +253,7 @@ export default function MultilingualSupport() {
                     <span className="text-xl sm:text-2xl" role="img" aria-label={lang.name}>
                       {lang.flag}
                     </span>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col items-center sm:items-start">
                       <span className="text-xs font-black">{lang.nativeName}</span>
                       <span className={`text-[10px] uppercase font-bold tracking-wider leading-none mt-0.5 ${
                         isSelected ? 'text-amber-500' : 'text-slate-400'

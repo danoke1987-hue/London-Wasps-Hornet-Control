@@ -5,6 +5,7 @@
 
 import React, { useState } from 'react';
 import { ShieldCheck, Flame, Clock, Bug, CheckCircle2, ChevronRight, Phone, Award } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface HeroProps {
   onCheckPostcode: (postcode: string) => void;
@@ -12,6 +13,7 @@ interface HeroProps {
 }
 
 export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
+  const { t } = useLanguage();
   const [postcode, setPostcode] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,10 +25,10 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
   };
 
   const guarantees = [
-    '100% Guaranteed Eradication',
-    'Certified BPCA-Standard Techs',
-    'Same-Day / 1-Hour Urgent Dispatch',
-    'No Hidden Costs – Starts at £80'
+    t('hero.guarantee'),
+    t('hero.certified'),
+    t('hero.insurance'),
+    t('stats.safetyVal')
   ];
 
   return (
@@ -45,15 +47,15 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
           <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-slate-900 border border-amber-500/30 px-3 py-1.5 rounded-full text-amber-500 text-xs sm:text-sm font-semibold tracking-wide uppercase select-none shadow-inner">
               <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
-              Emergency Services Active in Greater London
+              {t('hero.tag')}
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white">
-              Professional <span className="text-amber-500">Wasp & Hornet</span> Nest Removal
+              {t('hero.title')}
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-medium">
-              We provide 24/7 rapid-response, guaranteed nest neutralisation for residential and commercial premises across <span className="text-white font-bold underline decoration-amber-500">London & Surrounding Counties</span>.
+              {t('hero.subtitle')}
             </p>
 
             {/* Core Selling Points */}
@@ -74,14 +76,14 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
                 id="hero-call-now"
               >
                 <Phone className="w-5 h-5 animate-bounce" />
-                Emergency Call Out
+                {t('hero.btnCall')}
               </a>
               <button
                 onClick={() => onNavigate('estimator')}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all active:scale-95 cursor-pointer"
                 id="hero-get-quote"
               >
-                Estimate Cost
+                {t('hero.btnBook')}
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
@@ -114,8 +116,8 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
                   <Clock className="w-6 h-6 text-amber-500" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">Check Live Dispatch</h3>
-                  <p className="text-xs text-slate-400 font-medium">Is there an active technician in your postcode?</p>
+                  <h3 className="text-lg font-bold text-white">{t('coverage.title')}</h3>
+                  <p className="text-xs text-slate-400 font-medium">{t('coverage.subtitle')}</p>
                 </div>
               </div>
 
@@ -123,7 +125,7 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
               <form onSubmit={handleSubmit} className="space-y-4" id="hero-postcode-form">
                 <div>
                   <label htmlFor="hero-postcode-input" className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
-                    Enter London Postcode Prefix (e.g. SW11, CR0, SE1)
+                    {t('coverage.placeholder')}
                   </label>
                   <div className="relative">
                     <input
@@ -139,7 +141,7 @@ export default function Hero({ onCheckPostcode, onNavigate }: HeroProps) {
                       type="submit"
                       className="absolute right-2 top-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-1.5 rounded-lg text-xs tracking-wider uppercase transition-colors"
                     >
-                      Check Live
+                      {t('coverage.btnCheck')}
                     </button>
                   </div>
                 </div>

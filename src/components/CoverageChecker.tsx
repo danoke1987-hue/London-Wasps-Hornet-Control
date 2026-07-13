@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { checkPostcodeCoverage } from '../data/postcodes';
 import { PostcodeResult } from '../types';
 import { MapPin, ShieldCheck, Clock, Users, Navigation, AlertCircle, Phone, HelpCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface CoverageCheckerProps {
   initialPostcode?: string;
@@ -30,6 +31,7 @@ export const homeCounties = [
 ];
 
 export default function CoverageChecker({ initialPostcode, onNavigate }: CoverageCheckerProps) {
+  const { t } = useLanguage();
   const [postcode, setPostcode] = useState(initialPostcode || '');
   const [result, setResult] = useState<PostcodeResult | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
@@ -68,13 +70,13 @@ export default function CoverageChecker({ initialPostcode, onNavigate }: Coverag
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-xs font-bold text-amber-600 uppercase tracking-widest mb-3">
-            Service Coverage Area
+            {t('nav.coverage')}
           </h2>
           <h3 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            London & Surrounding Counties Dispatch Map
+            {t('coverage.title')}
           </h3>
           <p className="mt-4 text-base text-slate-600 font-medium">
-            With multiple regional pest dispatch depots stationed throughout Greater London and the M25 ring road border, we can guarantee rapid 1-hour response times to critical infestations.
+            {t('coverage.subtitle')}
           </p>
         </div>
 
@@ -85,16 +87,16 @@ export default function CoverageChecker({ initialPostcode, onNavigate }: Coverag
           <div className="lg:col-span-5 bg-slate-50 border border-slate-100 p-6 sm:p-8 rounded-2xl shadow-sm space-y-6">
             <h4 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <Navigation className="w-5 h-5 text-amber-500" />
-              Check Live Availability
+              {t('coverage.title')}
             </h4>
             <p className="text-xs text-slate-500 font-medium">
-              Enter the first part of your postcode to query active crews in your local area.
+              {t('coverage.subtitle')}
             </p>
 
             <form onSubmit={handleSearch} className="space-y-4" id="coverage-checker-form">
               <div>
                 <label htmlFor="coverage-postcode-input" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                  Postcode Outer Code (e.g., SE10, SW19, TW1, CR0)
+                  {t('coverage.placeholder')}
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -110,7 +112,7 @@ export default function CoverageChecker({ initialPostcode, onNavigate }: Coverag
                     type="submit"
                     className="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors cursor-pointer shrink-0"
                   >
-                    Check Status
+                    {t('coverage.btnCheck')}
                   </button>
                 </div>
               </div>

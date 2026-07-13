@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { pestsData } from '../data/pests';
 import { Bug, AlertTriangle, ShieldCheck, HeartHandshake, Phone, ArrowRight } from 'lucide-react';
 import { PestInfo } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface PestIdentifierProps {
   onSelectPest: (pestId: 'wasp' | 'hornet' | 'unidentified') => void;
@@ -14,6 +15,7 @@ interface PestIdentifierProps {
 }
 
 export default function PestIdentifier({ onSelectPest, onNavigate }: PestIdentifierProps) {
+  const { t } = useLanguage();
   const [selectedId, setSelectedId] = useState('wasp');
 
   const activePest = pestsData.find((p) => p.id === selectedId) || pestsData[0];
@@ -52,13 +54,13 @@ export default function PestIdentifier({ onSelectPest, onNavigate }: PestIdentif
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-xs font-bold text-amber-600 uppercase tracking-widest mb-3">
-            Pest Diagnostics & Conservation Guide
+            {t('pest.title')}
           </h2>
           <h3 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
             Is it a Wasp, Hornet, or Bee?
           </h3>
           <p className="mt-4 text-base text-slate-600 font-medium leading-relaxed">
-            Many home and business owners struggle to identify black-and-yellow striped insects. Use our interactive guide to ensure you request the right service and protect vital pollinators.
+            {t('pest.subtitle')}
           </p>
         </div>
 
@@ -75,7 +77,7 @@ export default function PestIdentifier({ onSelectPest, onNavigate }: PestIdentif
               }`}
               id={`tab-pest-${pest.id}`}
             >
-              {pest.name}
+              {pest.id === 'wasp' ? t('pest.wasp') : pest.id === 'hornet' ? t('pest.hornet') : pest.name}
             </button>
           ))}
         </div>

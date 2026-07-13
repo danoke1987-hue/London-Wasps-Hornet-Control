@@ -45,7 +45,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-800 flex flex-col justify-between">
+        <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-800 flex flex-col justify-between overflow-x-hidden">
           
           {/* Reset Scroll Position automatically on Route Changes */}
           <ScrollToTop />
@@ -55,7 +55,7 @@ export default function App() {
           <Navbar onNavigate={handleNavigate} activeSection={activeSection} />
 
           {/* Core Content View Routing */}
-          <main className="flex-grow">
+          <main className="flex-grow overflow-x-hidden">
             <Routes>
               <Route 
                 path="/" 
