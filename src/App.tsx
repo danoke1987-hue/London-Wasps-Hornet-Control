@@ -5,6 +5,7 @@
 
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -48,6 +49,7 @@ export default function App() {
           
           {/* Reset Scroll Position automatically on Route Changes */}
           <ScrollToTop />
+          <Analytics />
 
           {/* Sticky Top-level Navigation */}
           <Navbar onNavigate={handleNavigate} activeSection={activeSection} />
