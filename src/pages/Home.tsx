@@ -17,6 +17,8 @@ import FAQs from '../components/FAQs';
 import { CostEstimate } from '../types';
 import { Home as HomeIcon, Building2, Timer, CheckCircle2, Phone } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+// @ts-ignore
+import exterminatorActionImg from '../assets/images/wasp_exterminator_action_1784130645575.jpg';
 
 interface HomeProps {
   onCheckPostcode: (postcode: string) => void;
@@ -189,6 +191,29 @@ export default function Home({
               </button>
             </div>
 
+          </div>
+
+          {/* Operations Showcase Banner */}
+          <div className="mt-12 max-w-5xl mx-auto bg-slate-50 border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm grid md:grid-cols-12 gap-0">
+            <div className="md:col-span-5 p-8 flex flex-col justify-center space-y-4">
+              <span className="text-[10px] font-black tracking-widest text-amber-600 uppercase">Field Operations</span>
+              <h4 className="text-2xl font-black text-slate-950">Safe, Certified Wasp Nest Extermination</h4>
+              <p className="text-sm text-slate-600 leading-relaxed font-semibold">
+                Our technicians are fully equipped with specialized BPCA-standard protective suits, professional high-reach extendable lances, and eco-friendly insecticide formulations to neutralize active nests in under 45 minutes.
+              </p>
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Active and ready across London today
+              </div>
+            </div>
+            <div className="md:col-span-7 h-64 md:h-auto min-h-[280px] relative">
+              <img 
+                src={exterminatorActionImg} 
+                alt="Wasp Nest Exterminators professional technician treating a nest" 
+                className="absolute inset-0 w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           </div>
 
           {/* Quick SLA Banner */}
