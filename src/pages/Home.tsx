@@ -9,7 +9,6 @@ import Hero from '../components/Hero';
 import PestIdentifier from '../components/PestIdentifier';
 import CoverageChecker from '../components/CoverageChecker';
 import CountyDirectory from '../components/CountyDirectory';
-import MultilingualSupport from '../components/MultilingualSupport';
 import CostCalculator from '../components/Calculator';
 import BookingForm from '../components/BookingForm';
 import Reviews from '../components/Reviews';
@@ -252,9 +251,6 @@ export default function Home({
 
       {/* Interactive Local Postcode Area Coverage Directories */}
       <CountyDirectory />
-
-      {/* London's Top 10 Multilingual Support and Interpreter Guide */}
-      <MultilingualSupport />
 
       {/* Interactive Cost Estimator Calculator */}
       <CostCalculator onEstimateChange={handleEstimateChange} onNavigate={handleNavigateLocal} />
