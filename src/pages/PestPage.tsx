@@ -12,6 +12,22 @@ import {
   ChevronRight, Bug, AlertOctagon, Heart, HelpCircle, ShieldAlert 
 } from 'lucide-react';
 
+// @ts-ignore
+import waspImg from '../assets/images/pest_wasp_guide_1784131088366.jpg';
+// @ts-ignore
+import hornetImg from '../assets/images/pest_hornet_guide_1784131099140.jpg';
+// @ts-ignore
+import honeybeeImg from '../assets/images/pest_honeybee_guide_1784131111132.jpg';
+// @ts-ignore
+import bumblebeeImg from '../assets/images/pest_bumblebee_guide_1784131123858.jpg';
+
+const pestImages: Record<string, string> = {
+  wasp: waspImg,
+  hornet: hornetImg,
+  honeybee: honeybeeImg,
+  bumblebee: bumblebeeImg,
+};
+
 export default function PestPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -186,37 +202,52 @@ export default function PestPage() {
               </div>
             </div>
 
-            {/* Right Column Action Plan Card */}
-            <div className={`md:col-span-5 border p-6 rounded-2xl flex flex-col justify-between ${
-              isProtected 
-                ? 'bg-emerald-50/40 border-emerald-200 text-emerald-950' 
-                : 'bg-red-50/30 border-red-200/80 text-red-950'
-            }`}>
-              <div className="space-y-4">
-                <h3 className="font-black text-slate-900 text-base">Treatment & Containment Strategy</h3>
-                <p className="text-xs leading-relaxed text-slate-600 font-semibold">
-                  How we process {pest.name} detections in the field:
-                </p>
-
-                <div className="bg-white/80 p-4 rounded-xl border border-dashed border-slate-300/60 space-y-2 text-xs">
-                  <span className="font-extrabold text-slate-900 uppercase text-[10px] tracking-wider block">Method Statement:</span>
-                  <p className="text-slate-600 font-semibold leading-relaxed">
-                    {pest.treatmentType}
-                  </p>
+            {/* Right Column Action Plan Card & Photo */}
+            <div className="md:col-span-5 flex flex-col gap-6">
+              {/* Species Identification Image */}
+              <div className="bg-slate-100 rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm relative h-56 sm:h-64">
+                <img 
+                  src={pestImages[pest.id]} 
+                  alt={`High-resolution macro shot of a ${pest.name}`} 
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-3 left-3 bg-slate-950/70 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] text-white font-bold tracking-wide uppercase">
+                  Macro ID Reference
                 </div>
               </div>
 
-              {isProtected && (
-                <div className="bg-emerald-500 text-white p-4 rounded-xl border border-emerald-600 text-xs leading-normal mt-6">
-                  <strong>Save The Bees Guarantee:</strong> We do NOT exterminate honeybees or bumblebees. If you request a callout and we identify them as beneficial bees, our certified specialists will provide safe, chemical-free rehoming solutions.
-                </div>
-              )}
+              <div className={`border p-6 rounded-2xl flex flex-col justify-between flex-grow ${
+                isProtected 
+                  ? 'bg-emerald-50/40 border-emerald-200 text-emerald-950' 
+                  : 'bg-red-50/30 border-red-200/80 text-red-950'
+              }`}>
+                <div className="space-y-4">
+                  <h3 className="font-black text-slate-900 text-base">Treatment & Containment Strategy</h3>
+                  <p className="text-xs leading-relaxed text-slate-600 font-semibold">
+                    How we process {pest.name} detections in the field:
+                  </p>
 
-              {isAggressive && (
-                <div className="bg-amber-500 text-slate-950 p-4 rounded-xl font-bold text-xs leading-normal mt-6 shadow-md shadow-amber-500/10">
-                  <strong>Eradication Lock:</strong> Standard treatment of a single wasp/hornet nest begins at only £80.00. We neutralize and apply a localized exclusion barrier to prevent future queen nesting.
+                  <div className="bg-white/80 p-4 rounded-xl border border-dashed border-slate-300/60 space-y-2 text-xs">
+                    <span className="font-extrabold text-slate-900 uppercase text-[10px] tracking-wider block">Method Statement:</span>
+                    <p className="text-slate-600 font-semibold leading-relaxed">
+                      {pest.treatmentType}
+                    </p>
+                  </div>
                 </div>
-              )}
+
+                {isProtected && (
+                  <div className="bg-emerald-500 text-white p-4 rounded-xl border border-emerald-600 text-xs leading-normal mt-6">
+                    <strong>Save The Bees Guarantee:</strong> We do NOT exterminate honeybees or bumblebees. If you request a callout and we identify them as beneficial bees, our certified specialists will provide safe, chemical-free rehoming solutions.
+                  </div>
+                )}
+
+                {isAggressive && (
+                  <div className="bg-amber-500 text-slate-950 p-4 rounded-xl font-bold text-xs leading-normal mt-6 shadow-md shadow-amber-500/10">
+                    <strong>Eradication Lock:</strong> Standard treatment of a single wasp/hornet nest begins at only £80.00. We neutralize and apply a localized exclusion barrier to prevent future queen nesting.
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 

@@ -15,6 +15,9 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
+// @ts-ignore
+import dispatchVehicleImg from '../assets/images/branded_dispatch_van_1784133692868.jpg';
+
 export default function PostcodeAreaPage() {
   const { t } = useLanguage();
   const { areaName, postcode } = useParams<{ areaName: string; postcode: string }>();
@@ -232,33 +235,48 @@ export default function PostcodeAreaPage() {
               </div>
             </div>
 
-            {/* Quality Seals */}
-            <div className="md:col-span-5 bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
-              <h3 className="font-black text-slate-950 text-base">Service Protocols for {normPostcode}</h3>
-              
-              <ul className="space-y-3.5 text-xs text-slate-700 font-bold">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-slate-900 block font-bold">BPCA Certified Technicians</strong>
-                    Every specialist on call is fully qualified, trained in COSHH regulations, and carries £5M liability protection.
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-slate-900 block font-bold">100% Re-treatment Guarantee</strong>
-                    If active wasps are still present 48 hours after treatment, we return to re-dose the nest free of charge.
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-slate-900 block font-bold">Ecological Safeguards</strong>
-                    We do not exterminate beneficial bee colonies. We offer dynamic rehoming alternatives for Honeybees and Bumblebees.
-                  </div>
-                </li>
-              </ul>
+            {/* Quality Seals & Photo */}
+            <div className="md:col-span-5 flex flex-col gap-6">
+              {/* Regional Dispatch Showcase Image */}
+              <div className="bg-slate-100 rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm relative h-56">
+                <img 
+                  src={dispatchVehicleImg} 
+                  alt={`Local regional dispatch vehicle operating in ${normPostcode}`} 
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-3 left-3 bg-slate-950/70 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] text-white font-bold tracking-wide uppercase">
+                  Active Dispatch Unit
+                </div>
+              </div>
+
+              <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
+                <h3 className="font-black text-slate-950 text-base">Service Protocols for {normPostcode}</h3>
+                
+                <ul className="space-y-3.5 text-xs text-slate-700 font-bold">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-slate-900 block font-bold">BPCA Certified Technicians</strong>
+                      Every specialist on call is fully qualified, trained in COSHH regulations, and carries £5M liability protection.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-slate-900 block font-bold">100% Re-treatment Guarantee</strong>
+                      If active wasps are still present 48 hours after treatment, we return to re-dose the nest free of charge.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-slate-900 block font-bold">Ecological Safeguards</strong>
+                      We do not exterminate beneficial bee colonies. We offer dynamic rehoming alternatives for Honeybees and Bumblebees.
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 

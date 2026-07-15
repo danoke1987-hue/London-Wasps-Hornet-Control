@@ -13,6 +13,25 @@ import {
   ChevronRight, Timer, Home, Building2, Flame, Sparkles, AlertTriangle 
 } from 'lucide-react';
 
+// @ts-ignore
+import waspNestRemovalImg from '../assets/images/service_wasp_nest_removal_1784131144223.jpg';
+// @ts-ignore
+import hornetControlImg from '../assets/images/service_hornet_control_1784131156559.jpg';
+// @ts-ignore
+import emergencyRemovalImg from '../assets/images/branded_emergency_van_1784133677559.jpg';
+// @ts-ignore
+import residentialControlImg from '../assets/images/service_residential_control_1784131182296.jpg';
+// @ts-ignore
+import commercialControlImg from '../assets/images/service_commercial_control_1784131196150.jpg';
+
+const serviceImages: Record<string, string> = {
+  'wasp-nest-removal': waspNestRemovalImg,
+  'hornet-control': hornetControlImg,
+  'emergency-removal': emergencyRemovalImg,
+  'residential-control': residentialControlImg,
+  'commercial-control': commercialControlImg,
+};
+
 interface ServiceData {
   title: string;
   tagline: string;
@@ -334,27 +353,42 @@ export default function ServicePage() {
               </div>
             </div>
 
-            {/* Right side highlights card */}
-            <div className="md:col-span-5 bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-6">
-              <h3 className="font-black text-slate-950 text-base">Service Standards & Guarantees</h3>
-              
-              <ul className="space-y-4 text-xs text-slate-700 font-semibold">
-                {service.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-slate-900 block font-bold">Standard {index + 1}</strong>
-                      {feature}
-                    </div>
-                  </li>
-                ))}
-              </ul>
+            {/* Right side highlights card & Photo */}
+            <div className="md:col-span-5 flex flex-col gap-6">
+              {/* Service Action Showcase Image */}
+              <div className="bg-slate-100 rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm relative h-56 sm:h-64">
+                <img 
+                  src={serviceImages[serviceId]} 
+                  alt={service.title} 
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-3 left-3 bg-slate-950/70 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] text-white font-bold tracking-wide uppercase">
+                  Service Reference Photo
+                </div>
+              </div>
 
-              <div className="border-t border-slate-200 pt-4 text-xs">
-                <span className="block font-bold text-slate-400 uppercase tracking-widest text-[10px]">Pricing Outline:</span>
-                <p className="text-slate-600 mt-1 font-semibold leading-relaxed">
-                  {service.pricingNote}
-                </p>
+              <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-6">
+                <h3 className="font-black text-slate-950 text-base">Service Standards & Guarantees</h3>
+                
+                <ul className="space-y-4 text-xs text-slate-700 font-semibold">
+                  {service.features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="text-slate-900 block font-bold">Standard {index + 1}</strong>
+                        {feature}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="border-t border-slate-200 pt-4 text-xs">
+                  <span className="block font-bold text-slate-400 uppercase tracking-widest text-[10px]">Pricing Outline:</span>
+                  <p className="text-slate-600 mt-1 font-semibold leading-relaxed">
+                    {service.pricingNote}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

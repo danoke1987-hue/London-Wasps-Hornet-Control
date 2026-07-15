@@ -14,6 +14,9 @@ import {
   ArrowLeft, CheckCircle2, ChevronRight, MessageSquare, AlertTriangle 
 } from 'lucide-react';
 
+// @ts-ignore
+import dispatchVehicleImg from '../assets/images/branded_dispatch_van_1784133692868.jpg';
+
 export default function ZonePage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -217,33 +220,48 @@ export default function ZonePage() {
               </div>
             </div>
 
-            {/* Quality Seals */}
-            <div className="md:col-span-5 bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
-              <h3 className="font-black text-slate-950 text-base">Our Service Standards in {zoneId}</h3>
-              
-              <ul className="space-y-3.5 text-xs text-slate-700 font-semibold">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-slate-900 block font-bold">£80.00 Base Rate</strong>
-                    Flat, transparent pricing for basic residential nest treatment. No hidden M25 surcharges.
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-slate-900 block font-bold">100% Eradication Guarantee</strong>
-                    If wasps or hornets survive the treated nest 48 hours post-visit, we return and re-treat completely free.
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-slate-900 block font-bold">Eco-Safe Conservation</strong>
-                    We do not kill honeybees or bumblebees. Safe live honeybee extraction and relocation to apiaries is standard.
-                  </div>
-                </li>
-              </ul>
+            {/* Quality Seals & Photo */}
+            <div className="md:col-span-5 flex flex-col gap-6">
+              {/* Regional Dispatch Showcase Image */}
+              <div className="bg-slate-100 rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm relative h-56">
+                <img 
+                  src={dispatchVehicleImg} 
+                  alt={`Local regional dispatch vehicle operating in ${zone.region}`} 
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-3 left-3 bg-slate-950/70 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] text-white font-bold tracking-wide uppercase">
+                  Active Dispatch Unit
+                </div>
+              </div>
+
+              <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
+                <h3 className="font-black text-slate-950 text-base">Our Service Standards in {zoneId}</h3>
+                
+                <ul className="space-y-3.5 text-xs text-slate-700 font-semibold">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-slate-900 block font-bold">£80.00 Base Rate</strong>
+                      Flat, transparent pricing for basic residential nest treatment. No hidden M25 surcharges.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-slate-900 block font-bold">100% Eradication Guarantee</strong>
+                      If wasps or hornets survive the treated nest 48 hours post-visit, we return and re-treat completely free.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-slate-900 block font-bold">Eco-Safe Conservation</strong>
+                      We do not kill honeybees or bumblebees. Safe live honeybee extraction and relocation to apiaries is standard.
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
