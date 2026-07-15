@@ -156,7 +156,7 @@ export default function ZonePage() {
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-500">Rates From</span>
-                  <span className="block text-xs font-black text-amber-500 mt-0.5">£80.00 Guaranteed</span>
+                  <span className="block text-xs font-black text-amber-500 mt-0.5">£95.00 Guaranteed</span>
                 </div>
               </div>
             </div>
@@ -242,8 +242,8 @@ export default function ZonePage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-slate-900 block font-bold">£80.00 Base Rate</strong>
-                      Flat, transparent pricing for basic residential nest treatment. No hidden M25 surcharges.
+                      <strong className="text-slate-900 block font-bold">£95.00 Base Rate</strong>
+                      Flat, transparent pricing for basic residential wasp nest treatment (£160 for hornets). No hidden M25 surcharges.
                     </div>
                   </li>
                   <li className="flex items-start gap-3">

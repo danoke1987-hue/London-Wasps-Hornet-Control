@@ -123,7 +123,7 @@ export default function PestPage() {
                 {isAggressive && (
                   <span className="bg-amber-500/10 border border-amber-500/20 text-amber-500 font-bold text-xs px-3.5 py-1.5 rounded-lg flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4" />
-                    Starting Price: £80.00 Eradication Flat Rate
+                    Starting Price: £{pestId === 'hornet' ? '160.00' : '95.00'} Eradication Flat Rate
                   </span>
                 )}
               </div>
@@ -244,7 +244,7 @@ export default function PestPage() {
 
                 {isAggressive && (
                   <div className="bg-amber-500 text-slate-950 p-4 rounded-xl font-bold text-xs leading-normal mt-6 shadow-md shadow-amber-500/10">
-                    <strong>Eradication Lock:</strong> Standard treatment of a single wasp/hornet nest begins at only £80.00. We neutralize and apply a localized exclusion barrier to prevent future queen nesting.
+                    <strong>Eradication Lock:</strong> Standard treatment of a single {pestId === 'hornet' ? 'hornet' : 'wasp'} nest begins at only £{pestId === 'hornet' ? '160.00' : '95.00'}. We neutralize and apply a localized exclusion barrier to prevent future queen nesting.
                   </div>
                 )}
               </div>

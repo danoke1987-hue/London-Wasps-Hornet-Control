@@ -73,7 +73,7 @@ export default function Home({
     }
   };
 
-  const handleEstimateChange = (est: CostEstimate & { propertyType: 'residential' | 'commercial'; nestCount: number; urgency: 'standard' | 'emergency'; location: 'low' | 'high' }) => {
+  const handleEstimateChange = (est: CostEstimate & { propertyType: 'residential' | 'commercial'; nestCount: number; urgency: 'standard' | 'emergency'; location: 'low' | 'high'; pestType?: 'wasp' | 'hornet' }) => {
     setPrefilledEstimates({
       propertyType: est.propertyType,
       nestCount: est.nestCount,
@@ -81,6 +81,9 @@ export default function Home({
       location: est.location,
       total: est.total
     });
+    if (est.pestType) {
+      setSelectedPest(est.pestType);
+    }
   };
 
   return (

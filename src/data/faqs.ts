@@ -28,7 +28,7 @@ export const faqs: FAQItem[] = [
     id: 'pricing-1',
     category: 'pricing',
     question: 'How much does wasp nest removal cost in London?',
-    answer: 'Our standard residential wasp nest removal services start from just £80. This is a fully inclusive price with no hidden surprises. If you have secondary nests on the same property, we offer a massive discount of only £30 for each additional nest treated during the same visit. For emergency 24/7 call-outs (late nights/weekends/rapid 1-hour dispatch), a small urgency surcharge applies, which is fully calculated in our quote estimator.'
+    answer: 'Our standard residential wasp nest removal services start from just £95, and £160 for hornets. This is a fully inclusive price with no hidden surprises. If you have secondary nests on the same property, we offer a massive discount of only £30 for each additional nest treated during the same visit. For emergency 24/7 call-outs (late nights/weekends/rapid 1-hour dispatch), a small urgency surcharge applies, which is fully calculated in our quote estimator.'
   },
   {
     id: 'pricing-2',

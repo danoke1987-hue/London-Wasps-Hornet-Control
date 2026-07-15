@@ -9,29 +9,32 @@ import { HelpCircle, ShieldCheck, CheckSquare, Sparkles, BookOpen, Calculator, I
 import { useLanguage } from '../context/LanguageContext';
 
 interface CalculatorProps {
-  onEstimateChange: (estimate: CostEstimate & { propertyType: 'residential' | 'commercial'; nestCount: number; urgency: 'standard' | 'emergency'; location: 'low' | 'high' }) => void;
+  onEstimateChange: (estimate: CostEstimate & { propertyType: 'residential' | 'commercial'; nestCount: number; urgency: 'standard' | 'emergency'; location: 'low' | 'high'; pestType?: 'wasp' | 'hornet' }) => void;
   onNavigate: (sectionId: string) => void;
 }
 
 export default function CostCalculator({ onEstimateChange, onNavigate }: CalculatorProps) {
   const { t } = useLanguage();
   const [propertyType, setPropertyType] = useState<'residential' | 'commercial'>('residential');
+  const [pestType, setPestType] = useState<'wasp' | 'hornet'>('wasp');
   const [nestCount, setNestCount] = useState<number>(1);
   const [locationHeight, setLocationHeight] = useState<'low' | 'high'>('low');
   const [urgency, setUrgency] = useState<'standard' | 'emergency'>('standard');
 
   const [estimate, setEstimate] = useState<CostEstimate>({
-    basePrice: 80,
+    basePrice: 95,
     additionalNestCharge: 0,
     urgencySurcharge: 0,
     commercialSurcharge: 0,
-    total: 80,
+    total: 95,
     isGuaranteed: true
   });
 
   // Calculate pricing
   useEffect(() => {
-    const base = propertyType === 'residential' ? 80 : 110;
+    const base = pestType === 'wasp'
+      ? (propertyType === 'residential' ? 95 : 125)
+      : (propertyType === 'residential' ? 160 : 190);
     const additionalCharge = (nestCount - 1) * 30;
     const heightSurcharge = locationHeight === 'high' ? 40 : 0;
     const urgencyCharge = urgency === 'emergency' ? 45 : 0;
@@ -41,7 +44,7 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
       basePrice: base,
       additionalNestCharge: additionalCharge,
       urgencySurcharge: urgencyCharge + heightSurcharge, // grouped for simplicity in the type
-      commercialSurcharge: propertyType === 'commercial' ? 35 : 0, // already integrated in base
+      commercialSurcharge: propertyType === 'commercial' ? 30 : 0, // already integrated in base
       total,
       isGuaranteed: true
     };
@@ -52,9 +55,10 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
       propertyType,
       nestCount,
       urgency,
-      location: locationHeight
+      location: locationHeight,
+      pestType
     });
-  }, [propertyType, nestCount, locationHeight, urgency]);
+  }, [propertyType, pestType, nestCount, locationHeight, urgency]);
 
   return (
     <section id="estimator" className="py-20 bg-slate-900 text-white relative overflow-hidden border-b border-slate-800">
@@ -109,6 +113,37 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                   id="calc-prop-commercial"
                 >
                   {t('calc.commercial')}
+                </button>
+              </div>
+            </div>
+
+            {/* Control: Target Pest Classification */}
+            <div className="space-y-3">
+              <label className="text-xs font-bold text-slate-300 uppercase tracking-widest block">
+                Target Pest Classification
+              </label>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => setPestType('wasp')}
+                  className={`py-3 px-4 rounded-xl font-bold text-sm border transition-all text-center cursor-pointer ${
+                    pestType === 'wasp'
+                      ? 'bg-amber-500 border-amber-500 text-slate-950 shadow-md shadow-amber-500/10'
+                      : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700'
+                  }`}
+                  id="calc-pest-wasp"
+                >
+                  Common Wasp (Starts £95)
+                </button>
+                <button
+                  onClick={() => setPestType('hornet')}
+                  className={`py-3 px-4 rounded-xl font-bold text-sm border transition-all text-center cursor-pointer ${
+                    pestType === 'hornet'
+                      ? 'bg-amber-500 border-amber-500 text-slate-950 shadow-md shadow-amber-500/10'
+                      : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700'
+                  }`}
+                  id="calc-pest-hornet"
+                >
+                  European Hornet (Starts £160)
                 </button>
               </div>
             </div>
@@ -235,10 +270,10 @@ export default function CostCalculator({ onEstimateChange, onNavigate }: Calcula
                 {/* Line 1: Base */}
                 <div className="flex items-center justify-between">
                   <span className="text-slate-400">
-                    Base {propertyType === 'residential' ? 'Residential' : 'Commercial'} Fee:
+                    Base {propertyType === 'residential' ? 'Residential' : 'Commercial'} {pestType === 'wasp' ? 'Wasp' : 'Hornet'} Fee:
                   </span>
                   <span className="text-white font-mono">
-                    £{propertyType === 'residential' ? 80 : 110}.00
+                    £{estimate.basePrice}.00
                   </span>
                 </div>
 

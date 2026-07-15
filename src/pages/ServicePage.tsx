@@ -51,7 +51,7 @@ const servicesDataRecord: Record<string, ServiceData> = {
     tagline: 'Safe, complete nest neutralisation within 24 hours — Guaranteed.',
     description: 'Our core service utilizes professional-grade, high-performance chemical formulations delivered directly into the nest entrance by certified specialists. This ensures the rapid and complete neutralisation of the entire colony (including the Queen) without risking structural damage to your property or gardens.',
     importance: 'Wasps build protective, aggressive paper nests in lofts, fascia boards, air bricks, wall cavities, and garden shrubbery. Attempting to spray nests with consumer aerosols or block nest entrances usually triggers swarming attacks, which can be life-threatening.',
-    pricingNote: 'Residential treatments start from a flat rate of just £80. Additional nests treated during the same session are heavily discounted at only £30 each.',
+    pricingNote: 'Residential treatments start from a flat rate of just £95. Additional nests treated during the same session are heavily discounted at only £30 each.',
     propertyType: 'residential',
     urgency: 'standard',
     icon: Home,
@@ -74,7 +74,7 @@ const servicesDataRecord: Record<string, ServiceData> = {
     tagline: 'Specialised high-hazard hornet treatment with maximum safety protocols.',
     description: 'European Hornets (Vespa crabro) and invasive Asian Hornets are significantly larger, louder, and deliver a more substantial volume of venom than common wasps. Hornet control requires specialized heavy-duty safety suits, specialized high-strength insecticides, and fast exclusion measures to prevent swarm reactions.',
     importance: 'Hornet nests built in attics, chimneys, wall vents, or outbuildings pose high medical hazards. Hornet stings are deeply painful and can cause severe allergic reactions (anaphylaxis) in children, elderly residents, or pets with minimal exposure.',
-    pricingNote: 'Hornet nest eradication treatments start from a flat rate of £80, subject to altitude and reach complexity which can be estimated in our pricing calculator.',
+    pricingNote: 'Hornet nest eradication treatments start from a flat rate of £160, subject to altitude and reach complexity which can be estimated in our pricing calculator.',
     propertyType: 'residential',
     urgency: 'standard',
     icon: ShieldCheck,
@@ -97,7 +97,7 @@ const servicesDataRecord: Record<string, ServiceData> = {
     tagline: 'Immediate, rapid-response wasp control whenever you need it most.',
     description: 'For clients dealing with wasps inside bedrooms, classrooms, hospitals, or restaurants, waiting is not an option. We operate fully equipped, responsive emergency vehicles across London 24 hours a day, 365 days a year, including nights, weekends, and public bank holidays.',
     importance: 'Nests that have ruptured into living rooms, high-traffic commercial spaces, or schools represent immediate safety hazards. Our 1-hour dispatch protocol gets a certified technician to your door immediately to resolve the hazard.',
-    pricingNote: 'Emergency call-outs are available across London with a £45 urgency surcharge on top of the £80 residential base fee. Rates are fully transparent and shown instantly.',
+    pricingNote: 'Emergency call-outs are available across London with a £45 urgency surcharge on top of the base fee (starting from £95 for wasps, £160 for hornets). Rates are fully transparent and shown instantly.',
     propertyType: 'residential',
     urgency: 'emergency',
     icon: Flame,
@@ -120,7 +120,7 @@ const servicesDataRecord: Record<string, ServiceData> = {
     tagline: 'Discreet, safe, and family-friendly wasp nest removal for London homes.',
     description: 'Our residential service is custom-built to restore safety and peace of mind to homeowners, tenants, and landlords. We use child- and pet-safe protocols, and we can operate discreetly with unmarked vehicles upon request to preserve privacy in residential streets.',
     importance: 'Wasps nested in loft areas, garden play equipment, garages, or cavity walls prevent you from using your gardens and risk entering children\'s bedrooms. Prompt treatment preserves structural insulation from wasp chewing.',
-    pricingNote: 'Standard home treatment is a flat £80 base fee. Backed by our 100% money-back guarantee: if any wasps survive, we return and re-treat completely free.',
+    pricingNote: 'Standard home treatment starts at £95 for wasps and £160 for hornets. Backed by our 100% money-back guarantee: if any survive, we return and re-treat completely free.',
     propertyType: 'residential',
     urgency: 'standard',
     icon: Home,
@@ -275,7 +275,11 @@ export default function ServicePage() {
                 </span>
                 <span className="bg-slate-900 border border-slate-800 text-slate-300 font-bold text-xs px-3.5 py-1.5 rounded-lg flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-                  From £{service.propertyType === 'residential' ? 80 : 110}.00 Flat Base
+                  From £{
+                    serviceId === 'hornet-control'
+                      ? (service.propertyType === 'residential' ? 160 : 190)
+                      : (service.propertyType === 'residential' ? 95 : 125)
+                  }.00 Flat Base
                 </span>
                 <span className="bg-slate-900 border border-slate-800 text-slate-300 font-bold text-xs px-3.5 py-1.5 rounded-lg flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
