@@ -8,6 +8,7 @@ import { checkPostcodeCoverage } from '../data/postcodes';
 import { PostcodeResult } from '../types';
 import { MapPin, ShieldCheck, Clock, Users, Navigation, AlertCircle, Phone, HelpCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import LondonMap from './LondonMap';
 
 interface CoverageCheckerProps {
   initialPostcode?: string;
@@ -206,16 +207,19 @@ export default function CoverageChecker({ initialPostcode, onNavigate }: Coverag
             </div>
           </div>
 
-          {/* Right Column: Visual Coverage List */}
+          {/* Right Column: Visual Interactive Map & Zone List */}
           <div className="lg:col-span-7 space-y-8">
-            <div>
+            {/* Visual London Service Coverage Zones */}
+            <LondonMap onSelectPostcode={handleBoroughClick} />
+
+            <div className="border-t border-slate-100 pt-6">
               <h4 className="text-lg font-bold text-slate-900 mb-3">Core Areas & Boroughs We Serve 24/7</h4>
               <p className="text-sm text-slate-500 mb-4 font-medium">
                 We provide round-the-clock emergency support across all 33 boroughs of Greater London:
               </p>
               
               {/* Interactive Borough Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-64 overflow-y-auto pr-2 border border-slate-100 p-3 rounded-xl bg-slate-50 scrollbar-thin">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto pr-2 border border-slate-100 p-3 rounded-xl bg-slate-50 scrollbar-thin">
                 {coreBoroughs.map((borough) => (
                   <button
                     key={borough}
