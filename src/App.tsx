@@ -73,6 +73,7 @@ export default function App() {
               <Route path="/service/:id" element={<ServicePage />} />
               <Route path="/pest/:id" element={<PestPage />} />
               <Route path="/area/:areaName/:postcode" element={<PostcodeAreaPage />} />
+              <Route path="/:areaName/:postcode" element={<PostcodeAreaPage />} />
             </Routes>
           </main>
 

@@ -26,7 +26,13 @@ export default function PostcodeAreaPage() {
   const normArea = (areaName || '').toLowerCase().trim();
   const normPostcode = (postcode || '').toUpperCase().trim();
 
-  const county = countiesData.find(c => c.slug === normArea);
+  // Robust matching logic to support Bromley/BR1, East-London/E1, etc.
+  const normalizedInputSlug = normArea.replace(/[\s_-]+/g, '').replace('area', '');
+  const county = countiesData.find(c => {
+    const normCountySlug = c.slug.toLowerCase().replace(/[\s_-]+/g, '').replace('area', '');
+    const normCountyName = c.name.toLowerCase().replace(/[\s_-]+/g, '').replace('area', '');
+    return normCountySlug === normalizedInputSlug || normCountyName === normalizedInputSlug;
+  });
   const isValidPostcode = county?.postcodes.some(pc => pc.toUpperCase() === normPostcode) || false;
 
   // Prefilled estimates from internal calculator
@@ -323,7 +329,7 @@ export default function PostcodeAreaPage() {
               {siblingPostcodes.map((pc) => (
                 <Link
                   key={pc}
-                  to={`/area/${county.slug}/${pc.toLowerCase()}`}
+                  to={`/${county.slug}/${pc.toLowerCase()}`}
                   className="p-3 rounded-lg border border-slate-200 bg-white hover:border-amber-400 text-center text-xs font-bold text-slate-700 hover:shadow-sm transition-all"
                 >
                   {pc} area

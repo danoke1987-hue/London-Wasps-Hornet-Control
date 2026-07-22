@@ -60,7 +60,7 @@ function generateSitemap() {
   countiesData.forEach(county => {
     county.postcodes.forEach(postcode => {
       xml += '  <url>\n';
-      xml += `    <loc>${BASE_URL}/area/${county.slug}/${postcode.toLowerCase()}</loc>\n`;
+      xml += `    <loc>${BASE_URL}/${county.slug}/${postcode.toLowerCase()}</loc>\n`;
       xml += '    <lastmod>2026-07-22</lastmod>\n';
       xml += '    <changefreq>weekly</changefreq>\n';
       xml += '    <priority>0.7</priority>\n';

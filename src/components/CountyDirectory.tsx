@@ -93,7 +93,7 @@ export default function CountyDirectory() {
                 {searchResults.map((res) => (
                   <Link
                     key={`${res.countySlug}-${res.postcode}`}
-                    to={`/area/${res.countySlug}/${res.postcode.toLowerCase()}`}
+                    to={`/${res.countySlug}/${res.postcode.toLowerCase()}`}
                     className="p-3 bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-amber-400 rounded-xl flex items-center justify-between text-xs font-black transition-all group"
                   >
                     <span>{res.postcode} area</span>
@@ -193,7 +193,7 @@ export default function CountyDirectory() {
                     {selectedCounty.postcodes.map((pc) => (
                       <Link
                         key={pc}
-                        to={`/area/${selectedCounty.slug}/${pc.toLowerCase()}`}
+                        to={`/${selectedCounty.slug}/${pc.toLowerCase()}`}
                         className="p-2.5 bg-slate-900 hover:bg-slate-850 hover:border-amber-500 border border-slate-800 rounded-lg text-center text-xs font-black transition-all text-slate-100 hover:text-white hover:scale-[1.02] duration-250 shrink-0"
                       >
                         {pc} Sector
