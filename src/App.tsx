@@ -9,6 +9,7 @@ import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import FloatingCallButton from './components/FloatingCallButton';
 import { LanguageProvider } from './context/LanguageContext';
 
 // Pages
@@ -77,6 +78,9 @@ export default function App() {
 
           {/* Footer Content */}
           <Footer onNavigate={handleNavigate} />
+
+          {/* Floating Mobile-only Call Now Emergency Button */}
+          <FloatingCallButton />
 
         </div>
       </BrowserRouter>
