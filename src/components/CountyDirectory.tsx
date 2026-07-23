@@ -6,8 +6,15 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { countiesData } from '../data/counties';
+import { neighborhoodsData } from '../data/neighborhoods';
 import { Map, MapPin, Search, ChevronRight, Compass, ShieldCheck, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+
+function getPostcodeSlug(postcode: string, fallbackSlug: string): string {
+  const normPc = postcode.toUpperCase().trim();
+  const match = neighborhoodsData.find(n => n.postcode.toUpperCase() === normPc);
+  return match ? match.slug : fallbackSlug;
+}
 
 export default function CountyDirectory() {
   const [selectedCountyId, setSelectedCountyId] = useState<string>('greater-london');
@@ -93,7 +100,7 @@ export default function CountyDirectory() {
                 {searchResults.map((res) => (
                   <Link
                     key={`${res.countySlug}-${res.postcode}`}
-                    to={`/${res.countySlug}/${res.postcode.toLowerCase()}`}
+                    to={`/${getPostcodeSlug(res.postcode, res.countySlug)}/${res.postcode.toLowerCase()}`}
                     className="p-3 bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-amber-400 rounded-xl flex items-center justify-between text-xs font-black transition-all group"
                   >
                     <span>{res.postcode} area</span>
@@ -193,7 +200,7 @@ export default function CountyDirectory() {
                     {selectedCounty.postcodes.map((pc) => (
                       <Link
                         key={pc}
-                        to={`/${selectedCounty.slug}/${pc.toLowerCase()}`}
+                        to={`/${getPostcodeSlug(pc, selectedCounty.slug)}/${pc.toLowerCase()}`}
                         className="p-2.5 bg-slate-900 hover:bg-slate-850 hover:border-amber-500 border border-slate-800 rounded-lg text-center text-xs font-black transition-all text-slate-100 hover:text-white hover:scale-[1.02] duration-250 shrink-0"
                       >
                         {pc} Sector

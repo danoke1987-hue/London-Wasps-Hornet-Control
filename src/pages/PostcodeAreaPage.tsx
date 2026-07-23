@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { countiesData } from '../data/counties';
+import { neighborhoodsData } from '../data/neighborhoods';
 import BookingForm from '../components/BookingForm';
 import CostCalculator from '../components/Calculator';
 import { CostEstimate } from '../types';
@@ -26,14 +27,37 @@ export default function PostcodeAreaPage() {
   const normArea = (areaName || '').toLowerCase().trim();
   const normPostcode = (postcode || '').toUpperCase().trim();
 
-  // Robust matching logic to support Bromley/BR1, East-London/E1, etc.
+  // 1. Look up by neighborhood slug and postcode
   const normalizedInputSlug = normArea.replace(/[\s_-]+/g, '').replace('area', '');
-  const county = countiesData.find(c => {
+  
+  // Find matching neighborhood record
+  const matchedNeighborhood = neighborhoodsData.find(n => {
+    const normNghSlug = n.slug.toLowerCase().replace(/[\s_-]+/g, '');
+    const normNghName = n.name.toLowerCase().replace(/[\s_-]+/g, '');
+    return (normNghSlug === normalizedInputSlug || normNghName === normalizedInputSlug) && n.postcode.toUpperCase() === normPostcode;
+  });
+
+  // Find the county
+  let county = countiesData.find(c => {
     const normCountySlug = c.slug.toLowerCase().replace(/[\s_-]+/g, '').replace('area', '');
     const normCountyName = c.name.toLowerCase().replace(/[\s_-]+/g, '').replace('area', '');
     return normCountySlug === normalizedInputSlug || normCountyName === normalizedInputSlug;
   });
+
+  // If we matched a neighborhood, let's override/ensure we have the correct county
+  if (matchedNeighborhood && !county) {
+    county = countiesData.find(c => c.id === matchedNeighborhood.countyId);
+  }
+
+  // If we still don't have a county, check if there's any county that has this postcode and matches loosely
+  if (!county && normPostcode) {
+    county = countiesData.find(c => c.postcodes.some(pc => pc.toUpperCase() === normPostcode));
+  }
+
   const isValidPostcode = county?.postcodes.some(pc => pc.toUpperCase() === normPostcode) || false;
+
+  // Display name for neighborhood
+  const areaDisplayName = matchedNeighborhood ? matchedNeighborhood.name : (county ? county.name : normArea);
 
   // Prefilled estimates from internal calculator
   const [prefilledEstimates, setPrefilledEstimates] = useState<{
@@ -128,7 +152,7 @@ export default function PostcodeAreaPage() {
           <ChevronRight className="w-3 h-3" />
           <span className="text-slate-400 capitalize">{county.name}</span>
           <ChevronRight className="w-3 h-3" />
-          <span className="text-slate-900 font-black">{normPostcode} Wasp Control</span>
+          <span className="text-slate-900 font-black">{areaDisplayName} ({normPostcode}) Wasp Control</span>
         </div>
       </div>
 
@@ -143,15 +167,15 @@ export default function PostcodeAreaPage() {
             <div className="lg:col-span-8 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-slate-900 border border-amber-500/30 px-3 py-1.5 rounded-full text-amber-500 text-xs sm:text-sm font-semibold tracking-wide uppercase">
                 <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Emergency Dispatch Active in {normPostcode}
+                Emergency Dispatch Active in {areaDisplayName}
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
-                Wasp & Hornet Nest Removal in <span className="text-amber-500">{normPostcode}</span> ({county.name})
+                Wasp & Hornet Nest Removal in <span className="text-amber-500">{areaDisplayName} ({normPostcode})</span>
               </h1>
 
               <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-medium">
-                Surgical-grade, certified wasp nest treatments and hornet colony eradication across the <strong>{normPostcode}</strong> sector. Secured by a 100% elimination warranty and £5M insurance.
+                Surgical-grade, certified wasp nest treatments and hornet colony eradication across the <strong>{areaDisplayName} ({normPostcode})</strong> sector. Secured by a 100% elimination warranty and £5M insurance.
               </p>
 
               {/* Stats Grid */}
@@ -192,7 +216,7 @@ export default function PostcodeAreaPage() {
 
             {/* Callback Widget */}
             <div className="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center space-y-4 shadow-xl">
-              <h3 className="font-extrabold text-white text-base">Direct {normPostcode} Dispatch</h3>
+              <h3 className="font-extrabold text-white text-base">Direct {areaDisplayName} Dispatch</h3>
               <p className="text-xs text-slate-400 font-medium leading-relaxed">
                 Connect directly with our regional controller for a free expert quote and instant booking.
               </p>
@@ -224,10 +248,10 @@ export default function PostcodeAreaPage() {
           <div className="grid md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-7 space-y-6">
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                Swift Wasp Colony Eradication in {normPostcode}
+                Swift Wasp Colony Eradication in {areaDisplayName} ({normPostcode})
               </h2>
               <p className="text-sm text-slate-600 font-semibold leading-relaxed">
-                Wasp and hornet nests constructed in wall cavities, chimney flues, roof soffits, or within the garden ground present immediate dangers to households and employees. Operating directly from our <strong>{county.dispatchHub}</strong>, we are positioned to treat nesting issues in <strong>{normPostcode}</strong> within an average of {localResponseTime} minutes. 
+                Wasp and hornet nests constructed in wall cavities, chimney flues, roof soffits, or within the garden ground present immediate dangers to households and employees. Operating directly from our <strong>{county.dispatchHub}</strong>, we are positioned to treat nesting issues in <strong>{areaDisplayName} ({normPostcode})</strong> within an average of {localResponseTime} minutes. 
               </p>
               <p className="text-sm text-slate-600 font-semibold leading-relaxed">
                 Our certified technicians use professional-grade insecticides and precision lance applicators to safely neutralise the nest. The treatment is fast, low-disruption, and backed by our unconditional 100% re-treatment guarantee.
@@ -236,7 +260,7 @@ export default function PostcodeAreaPage() {
               <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl space-y-3">
                 <h4 className="font-black text-slate-900 text-sm">Our Local Coverage Commitment:</h4>
                 <p className="text-xs text-slate-600 leading-normal font-semibold">
-                  We guarantee full priority coverage across all households, estates, and commercial facilities inside the <strong>{normPostcode}</strong> outcode sector and surrounding neighborhoods of <strong>{county.name}</strong>.
+                  We guarantee full priority coverage across all households, estates, and commercial facilities inside the <strong>{areaDisplayName} ({normPostcode})</strong> outcode sector and surrounding neighborhoods of <strong>{county.name}</strong>.
                 </p>
               </div>
             </div>
@@ -247,7 +271,7 @@ export default function PostcodeAreaPage() {
               <div className="bg-slate-100 rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm relative h-56">
                 <img 
                   src={dispatchVehicleImg} 
-                  alt={`Local regional dispatch vehicle operating in ${normPostcode}`} 
+                  alt={`Local regional dispatch vehicle operating in ${areaDisplayName} (${normPostcode})`} 
                   className="absolute inset-0 w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -257,7 +281,7 @@ export default function PostcodeAreaPage() {
               </div>
 
               <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
-                <h3 className="font-black text-slate-950 text-base">Service Protocols for {normPostcode}</h3>
+                <h3 className="font-black text-slate-950 text-base">Service Protocols for {areaDisplayName} ({normPostcode})</h3>
                 
                 <ul className="space-y-3.5 text-xs text-slate-700 font-bold">
                   <li className="flex items-start gap-3">
@@ -297,13 +321,13 @@ export default function PostcodeAreaPage() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-xs font-bold text-amber-600 uppercase tracking-widest mb-3">
-              Book Treatment Online — {normPostcode} Dispatch
+              Book Treatment Online — {areaDisplayName} ({normPostcode}) Dispatch
             </h2>
             <h3 className="text-3xl font-black text-slate-950 tracking-tight">
               Request Your Same-Day Service
             </h3>
             <p className="mt-2 text-sm text-slate-600 font-semibold">
-              Fill in your details below. Your reservation request will immediately appear on the screen of our nearest {normPostcode} technician.
+              Fill in your details below. Your reservation request will immediately appear on the screen of our nearest {areaDisplayName} ({normPostcode}) technician.
             </p>
           </div>
           <BookingForm 
@@ -315,18 +339,31 @@ export default function PostcodeAreaPage() {
       </div>
 
       {/* Directory of Neighboring Postcodes in the County */}
-      {siblingPostcodes.length > 0 && (
-        <section className="py-16 bg-slate-50 border-b border-slate-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-10">
-              <h3 className="text-xl font-black text-slate-950">Other {county.name} Coverage Locations</h3>
-              <p className="text-xs text-slate-500 font-semibold mt-2">
-                We maintain active service routes across all neighboring postcode sectors.
-              </p>
-            </div>
+      <section className="py-16 bg-slate-50 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <h3 className="text-xl font-black text-slate-950">Other {county.name} Coverage Locations</h3>
+            <p className="text-xs text-slate-500 font-semibold mt-2">
+              We maintain active service routes across all neighboring postcode sectors.
+            </p>
+          </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 max-w-5xl mx-auto">
-              {siblingPostcodes.map((pc) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 max-w-5xl mx-auto">
+            {neighborhoodsData.filter(n => n.countyId === county.id && n.postcode !== normPostcode).slice(0, 24).length > 0 ? (
+              neighborhoodsData
+                .filter(n => n.countyId === county.id && n.postcode !== normPostcode)
+                .slice(0, 24)
+                .map((sa) => (
+                  <Link
+                    key={`${sa.slug}-${sa.postcode}`}
+                    to={`/${sa.slug}/${sa.postcode.toLowerCase()}`}
+                    className="p-3 rounded-lg border border-slate-200 bg-white hover:border-amber-400 text-center text-[11px] font-bold text-slate-700 hover:shadow-sm transition-all"
+                  >
+                    {sa.name} ({sa.postcode})
+                  </Link>
+                ))
+            ) : (
+              siblingPostcodes.map((pc) => (
                 <Link
                   key={pc}
                   to={`/${county.slug}/${pc.toLowerCase()}`}
@@ -334,11 +371,11 @@ export default function PostcodeAreaPage() {
                 >
                   {pc} area
                 </Link>
-              ))}
-            </div>
+              ))
+            )}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
     </div>
   );
 }

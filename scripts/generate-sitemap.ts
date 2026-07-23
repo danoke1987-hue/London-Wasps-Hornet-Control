@@ -6,6 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 import { countiesData } from '../src/data/counties';
+import { neighborhoodsData } from '../src/data/neighborhoods';
 
 // Let's mock or import what's needed or just list the static services/pests
 const BASE_URL = 'https://www.waspnestexterminators.co.uk';
@@ -55,17 +56,42 @@ function generateSitemap() {
     xml += '  </url>\n';
   });
 
-  // 3. Add dynamic area postcode routes from countiesData
+  // 3. Add dynamic area postcode routes from neighborhoodsData & countiesData fallback
   let count = 0;
-  countiesData.forEach(county => {
-    county.postcodes.forEach(postcode => {
+  const addedUrls = new Set<string>();
+
+  // Add all specific neighborhoods
+  neighborhoodsData.forEach(neighborhood => {
+    const url = `${BASE_URL}/${neighborhood.slug}/${neighborhood.postcode.toLowerCase()}`;
+    if (!addedUrls.has(url)) {
       xml += '  <url>\n';
-      xml += `    <loc>${BASE_URL}/${county.slug}/${postcode.toLowerCase()}</loc>\n`;
+      xml += `    <loc>${url}</loc>\n`;
       xml += '    <lastmod>2026-07-22</lastmod>\n';
       xml += '    <changefreq>weekly</changefreq>\n';
       xml += '    <priority>0.7</priority>\n';
       xml += '  </url>\n';
+      addedUrls.add(url);
       count++;
+    }
+  });
+
+  // Fallback map for other postcode sectors in countiesData
+  countiesData.forEach(county => {
+    county.postcodes.forEach(postcode => {
+      const normPc = postcode.toUpperCase().trim();
+      const match = neighborhoodsData.find(n => n.postcode.toUpperCase() === normPc);
+      const slug = match ? match.slug : county.slug;
+      const url = `${BASE_URL}/${slug}/${postcode.toLowerCase()}`;
+      if (!addedUrls.has(url)) {
+        xml += '  <url>\n';
+        xml += `    <loc>${url}</loc>\n`;
+        xml += '    <lastmod>2026-07-22</lastmod>\n';
+        xml += '    <changefreq>weekly</changefreq>\n';
+        xml += '    <priority>0.7</priority>\n';
+        xml += '  </url>\n';
+        addedUrls.add(url);
+        count++;
+      }
     });
   });
 
